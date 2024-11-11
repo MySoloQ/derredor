@@ -53,6 +53,6 @@ class SignUpProcess {
     signUpUser.setName(username);
     signUpUser.setEmail(email);
     signUpUser.setPassword(password);
-    ConnectApi().signUpInsertProcess(signUpUser, context);
+    ConnectApi().insertProcess(signUpUser, context);
   }
 }

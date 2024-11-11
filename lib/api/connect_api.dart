@@ -15,7 +15,7 @@ class ConnectApi {
     return await MySqlConnection.connect(connection);
   }
 
-  Future<void> signUpInsertProcess(Users user, BuildContext context) async {
+  Future<void> insertProcess(Users user, BuildContext context) async {
     final connect = await connecting();
 
     try {
