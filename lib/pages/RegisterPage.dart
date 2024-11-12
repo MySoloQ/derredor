@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:derredor/style/style.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Registerpage extends StatefulWidget {
   const Registerpage({super.key});
@@ -16,57 +17,83 @@ class _RegisterpageState extends State<Registerpage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Flexible(
-          child: Column(
-        children: [
-          SizedBox(
-            height: altura / 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.person_add_sharp, color: Style.Azul, size: 130),
-            ],
-          ),
-          SizedBox(
-            height: altura / 10,
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                  labelText: "Nome de Usuário:",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  )),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 450,
+                aspectRatio: 16 / 9,
+                viewportFraction: 1.0,
+                enableInfiniteScroll: true,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 5),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.linearToEaseOut,
+                enlargeCenterPage: false,
+              ),
+              items: [
+                Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/jalapao.png'),
+                          fit: BoxFit.cover)),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/natividade.png'),
+                          fit: BoxFit.cover)),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/praça_girassois.png'),
+                          fit: BoxFit.cover)),
+                )
+              ],
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                  labelText: "Senha:",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(child: Icon(Icons.person, color: Style.Azul, size: 130)),
+              ],
             ),
-          ),
-          SizedBox(
-            height: altura / 8,
-          ),
-          ElevatedButton(
-            onPressed: () => {},
-            style: ElevatedButton.styleFrom(
-                minimumSize: Size(largura / 2, 50),
-                backgroundColor: Style.Azul,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30))),
-            child: Text("CADASTRAR",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.white)),
-          ),
-        ],
-      )),
+            Padding(
+              padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Nome de Usuário:",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                    )),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(30, 20, 30, 50),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: "Senha:",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                    )),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => {},
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size(largura / 2, 50),
+                  backgroundColor: Style.Azul,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30))),
+              child: Text("CADASTRAR",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white)),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
