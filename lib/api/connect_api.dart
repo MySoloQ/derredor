@@ -30,4 +30,19 @@ class ConnectApi {
       await connect.close();
     }
   }
+  Future<void> selectProcess(Users user, BuildContext context) async {
+    final connect = await connecting();
+
+    try {
+      var result = await connect.query(
+        'SELECT username, ',
+        [user.userName, user.email, user.password],
+      );
+      print('Inserted user id=${result.insertId}');
+    } catch (e) {
+      print('Error: $e');
+    } finally {
+      await connect.close();
+    }
+  }
 }

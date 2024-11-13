@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:derredor/api/connect_api.dart';
 
 class AppVariablesDb with ChangeNotifier {
-  String host = '';
-  String get getHost => host;
-  void setHost(String localhost) {
-    host = localhost;
-    notifyListeners();
-  }
-
+  ScreenSize screen = ScreenSize();
   LoginProcess loginProcess = LoginProcess();
   SignUpProcess signUpProcess = SignUpProcess();
+}
+
+class ScreenSize {
+  Size screenSize(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    return Size(height, width);
+  }
 }
 
 class Users with ChangeNotifier {
