@@ -77,26 +77,21 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
               ),
             ),
-            sexo.map((item) {
-              return RadioListTile(
-                value: sexoSelecionado,
-                groupValue: item,
-                onChanged: (value) {
-                  sexoSelecionado = value!;
-                  setState(() {});
-                },
-                title: Text("Sexo"),
-              );
-            }).toList(),
-            RadioListTile<String>(
-              title: const Text("Masculino"),
-              value: sexo[0],
-              groupValue: sexoSelecionado,
-              onChanged: (String? value) {
-                setState(() {
-                  sexoSelecionado = value.toString();
-                });
-              },
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: sexo.map((item) {
+                return RadioListTile(
+                  value: item,
+                  groupValue: sexoSelecionado,
+                  onChanged: (value) {
+                    sexoSelecionado = value!;
+                    setState(() {});
+                  },
+                  title: Text("Titulo"),
+                  subtitle: Text("Subtitulo $item"),
+                  activeColor: Colors.red,
+                );
+              }).toList(),
             ),
             Container(
               width: largura,
