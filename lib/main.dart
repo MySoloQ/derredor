@@ -1,4 +1,4 @@
-import 'package:derredor/pages/RegisterPage.dart';
+import 'package:derredor/pages/register_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
