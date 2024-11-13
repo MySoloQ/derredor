@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +18,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/icons/
+    - assets/icons/icon_sol_tocantins.png
+    - assets/fervedouro_bela_vista_1.png

@@ -61,15 +61,22 @@ class _InitialpageState extends State<Initialpage> {
                   size: Size(width, height),
                   painter: Painter(),
                 ),
-                Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                    image: AssetImage(
-                      'assets/icons/icon_sol_tocantins.png',
-                    ),
+                Transform.translate(
+                  offset: Offset(0, height*.11),
+                  child: Center(
+                    child: Container(
+                      width: width*.50,
+                      height: width*.50,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                        image: AssetImage(
+                          'assets/icons/icon_sol_tocantins.png',
+                        ),
+                      ),
+                    )),
                   ),
-                ))
+                )
               ],
             )),
       ),
@@ -83,30 +90,26 @@ class _InitialpageState extends State<Initialpage> {
                 'Escolha como deseja acessar o app',
                 style: TextStyle(color: Colors.black45, fontSize: 20),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 50, 0, 50),
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  decoration: BoxDecoration(
-                      color: _isPressed
-                          ? Colors.greenAccent
-                          : Colors.red,
-                      borderRadius: BorderRadius.circular(30)),
-                  child: ElevatedButton(
-                    child: Text(
-                      'Já possuo cadastro',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(300, 50),
-                      backgroundColor: Colors.transparent,
-                    ),
-                    onPressed: _toggleButton,
-                  ),
+              ElevatedButton(
+                onPressed: (){},
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.resolveWith((states) {
+                    if (states.contains(WidgetState.pressed)) {
+                      return Colors.grey[800];
+                    } else {
+                      return StyleApp.detailsColor;
+                    }
+                  }
+                ),
+                    minimumSize: WidgetStatePropertyAll<Size>(Size(300,50)),
+                ),
+                child: Text(
+                  'Já possuo cadastro',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, height * .1, 0, 0),
                 child: SizedBox(
                   child: Stack(
                     children: [
@@ -145,27 +148,23 @@ class _InitialpageState extends State<Initialpage> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  decoration: BoxDecoration(
-                      color: _isPressed
-                          ? Colors.greenAccent
-                          : Colors.red,
-                      borderRadius: BorderRadius.circular(30)),
-                  child: ElevatedButton(
-                    child: Text(
-                      'Desejo me cadastrar',
-                      style: TextStyle(fontSize: 20, color: Colors.black45),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                            side:
-                                BorderSide(color: Colors.black, width: 2)),
-                        minimumSize: Size(300, 50),
-                        backgroundColor: Colors.white),
-                    onPressed: _toggleButton,
+                child: ElevatedButton(
+                  child: Text(
+                    'Desejo me cadastrar',
+                    style: TextStyle(fontSize: 20, color: Colors.black45),
                   ),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.resolveWith((states) {
+                      if (states.contains(WidgetState.pressed)) {
+                        return Colors.grey[800];
+                      } else {
+                        return Colors.white;
+                      }
+                    }
+                    ),
+                    minimumSize: WidgetStatePropertyAll<Size>(Size(300,50)),
+                  ),
+                  onPressed: _toggleButton,
                 ),
               ),
             ],
@@ -181,29 +180,34 @@ class _InitialpageState extends State<Initialpage> {
 class Painter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
+
+    final paintLago = Paint()
+      ..color = StyleApp.detailsColor
+      ..style = PaintingStyle.fill;
+
+    final paintDunas = Paint()
       ..color = StyleApp.bgColor
       ..style = PaintingStyle.fill;
 
-    final pathBottom = Path();
-    pathBottom.moveTo(0, size.height);
-    pathBottom.cubicTo(size.width * .24, size.height * .60, size.width * .60,
-        size.height * .8, size.width, size.height * 0.60);
-    pathBottom.cubicTo(size.width, size.height * .15, size.width, size.height,
-        size.width, size.height);
-    pathBottom.close();
+    final pathLago = Path();
+    pathLago.moveTo(0, size.height * .5);
+    pathLago.cubicTo(size.width * .24, size.height * .4, size.width * .60,
+        size.height * .60, size.width, size.height * 0.4);
+    pathLago.cubicTo(size.width * 30, size.height, size.width+1, size.height,
+        0, size.height);
+    pathLago.close();
 
-    canvas.drawPath(pathBottom, paint);
+    canvas.drawPath(pathLago, paintLago);
 
-    final pathTop = Path();
-    pathTop.moveTo(0, size.height * 0.24);
-    pathTop.cubicTo(size.width * .24, size.height * .001, size.width * .60,
-        size.height * .20, size.width, size.height * 0.001);
-    pathTop.cubicTo(size.width, -size.height * .15, -size.width, -size.height,
-        -size.width, -size.height);
-    pathTop.close();
+    final pathDunas = Path();
+    pathDunas.moveTo(0, size.height * .5);
+    pathDunas.cubicTo(size.width * .24, size.height * .4, size.width * .60,
+        size.height * .70, size.width, size.height * 0.4);
+    pathDunas.cubicTo(size.width * 32, size.height, size.width+15, size.height,
+        0, size.height);
+    pathDunas.close();
 
-    canvas.drawPath(pathTop, paint);
+    canvas.drawPath(pathDunas, paintDunas);
   }
 
   @override
