@@ -4,7 +4,6 @@ import 'package:derredor/functions.dart';
 import 'package:provider/provider.dart';
 import 'screens/login_screen.dart';
 
-
 void main() {
   runApp(
     ChangeNotifierProvider(
@@ -28,4 +27,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

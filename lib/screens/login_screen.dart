@@ -109,7 +109,40 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-          )
+          ),
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 450,
+              aspectRatio: 16 / 9,
+              viewportFraction: 1.0,
+              enableInfiniteScroll: true,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 5),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.linearToEaseOut,
+              enlargeCenterPage: false,
+            ),
+            items: [
+              Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/jalapao.png'),
+                        fit: BoxFit.cover)),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/natividade.png'),
+                        fit: BoxFit.cover)),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/praça_girassois.png'),
+                        fit: BoxFit.cover)),
+              ),
+            ],
+          ),
         ],
       ),
     );
