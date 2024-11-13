@@ -12,8 +12,8 @@ InputDecoration loginFormField(String? label, String? hint) {
   return InputDecoration(
     hintText: hint,
     labelText: label,
-    hintStyle: TextStyle(color: StyleApp.textColors),
-    labelStyle: TextStyle(color: StyleApp.textColors),
+    hintStyle: TextStyle(color: StyleApp.detailsColors),
+    labelStyle: TextStyle(color: StyleApp.detailsColors),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
       borderSide: BorderSide(color: StyleApp.detailsColors, width: 3),
@@ -42,11 +42,11 @@ class ShapePathPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
     path.moveTo(0, size.height);
 
-    path.cubicTo(size.width * -0.3, size.height * .2, size.width * .60,
-        size.height * .8, size.width, size.height * 0.5);
+    path.cubicTo(size.width * -0.27, size.height * .45, size.width * .60,
+        size.height, size.width, size.height * 0.85);
     path.cubicTo(size.width, size.height, size.width, size.height * 1,
         size.width * 1, size.height);
-    path.addRect(Rect.fromLTRB(0, size.height * 1.49, size.height, size.width));
+    path.addRect(Rect.fromLTRB(0, size.height * 2, size.height, size.width));
     canvas.drawPath(path, paint);
     path.close();
   }
