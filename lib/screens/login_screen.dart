@@ -35,115 +35,89 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      body: Stack(
-        children: [
-          CustomPaint(
-            size: size,
-            painter: ShapePathPainter(),
-          ),
-          SizedBox(
-            width: 350,
-            child: Form(
-              key: _loginKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration:
-                          loginFormField('Your email', 'Enter your email'),
-                      style: TextStyle(color: StyleApp.textColors),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please, enter a email.';
-                        } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                            .hasMatch(value)) {
-                          return 'Please, enter a valid email.';
-                        }
-                        return null;
-                      },
-                      obscureText: false,
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    TextFormField(
-                      controller: _passwordController,
-                      decoration: loginFormField(
-                          'Your password', 'Enter your password'),
-                      style: TextStyle(color: StyleApp.textColors),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please, enter a password.';
-                        } else if (value.length < 8) {
-                          return 'Please, enter a passoword with more than 8 characters.';
-                        }
-                        return null;
-                      },
-                      obscureText: true,
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        '',
-                        style: TextStyle(color: StyleApp.textColors),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Image.asset('assets/jalapao.png'),
+                CustomPaint(
+                  size: size,
+                  painter: ShapePathPainter(),
+                ),
+                SizedBox(
+                  width: 350,
+                  child: Form(
+                    key: _loginKey,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: loginFormField(
+                                'Your email', 'Enter your email'),
+                            style: TextStyle(color: StyleApp.textColors),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please, enter a email.';
+                              } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                  .hasMatch(value)) {
+                                return 'Please, enter a valid email.';
+                              }
+                              return null;
+                            },
+                            obscureText: false,
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          TextFormField(
+                            controller: _passwordController,
+                            decoration: loginFormField(
+                                'Your password', 'Enter your password'),
+                            style: TextStyle(color: StyleApp.textColors),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please, enter a password.';
+                              } else if (value.length < 8) {
+                                return 'Please, enter a passoword with more than 8 characters.';
+                              }
+                              return null;
+                            },
+                            obscureText: true,
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Text(
+                              '',
+                              style: TextStyle(color: StyleApp.textColors),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (_loginKey.currentState!.validate()) {
+                                Navigator.popAndPushNamed(
+                                    context, '/CatalogueScreen');
+                              }
+                            },
+                            child: const Text('Submit'),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_loginKey.currentState!.validate()) {
-                          Navigator.popAndPushNamed(
-                              context, '/CatalogueScreen');
-                        }
-                      },
-                      child: const Text('Submit'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ),
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 450,
-              aspectRatio: 16 / 9,
-              viewportFraction: 1.0,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 5),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              autoPlayCurve: Curves.linearToEaseOut,
-              enlargeCenterPage: false,
-            ),
-            items: [
-              Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/jalapao.png'),
-                        fit: BoxFit.cover)),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/natividade.png'),
-                        fit: BoxFit.cover)),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/praça_girassois.png'),
-                        fit: BoxFit.cover)),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

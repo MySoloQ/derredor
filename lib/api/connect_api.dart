@@ -11,7 +11,7 @@ class ConnectApi {
     db: 'jvvm2007_am_app_db',
   );
   Future<MySqlConnection> connecting() async {
-    print('${connection.host}');
+
     return await MySqlConnection.connect(connection);
   }
 
