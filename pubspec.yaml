@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.5.4
+  sdk: ^3.5.3
 
 dependencies:
   flutter:
@@ -23,3 +23,4 @@ flutter:
     - assets/icons/
     - assets/icons/icon_sol_tocantins.png
     - assets/fervedouro_bela_vista_1.png
+    - assets/dunas_jalapao_1.png
