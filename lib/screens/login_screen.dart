@@ -14,16 +14,15 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   ShapePathPainter customShape = ShapePathPainter();
   final _loginKey = GlobalKey<FormState>();
-
+  int _currentIndex = 0;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    List<Widget> listOfimages = [
-      Image.asset('assets/jalapao.png', fit: BoxFit.cover),
-      Image.asset('assets/natividade.png', fit: BoxFit.cover),
-      Image.asset('assets/praça_girassois.png', fit: BoxFit.cover),
+    List<String> listOfimages = [
+      'assets/jalapao.png',
+      'assets/natividade.png',
+      'assets/praça_girassois.png',
     ];
 
     Size size = Provider.of<AppVariablesDb>(context, listen: false)
@@ -37,23 +36,46 @@ class _LoginScreenState extends State<LoginScreen> {
             Stack(
               children: [
                 Transform.translate(
-                  offset: Offset(0, 0),
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      height: 450,
-                      aspectRatio: 16 / 9,
-                      viewportFraction: 1.0,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 5),
-                      autoPlayCurve: Curves.linearToEaseOut,
-                      enlargeCenterPage: false,
+                  offset: const Offset(0, 0),
+                  child: AnimatedSwitcher(
+                    duration: Duration(milliseconds: 500),
+                    child: Image.asset(
+                      height: size.height,
+                      listOfimages[_currentIndex],
+                      key: ValueKey<int>(
+                          _currentIndex), // Ensures new widget on index change
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width,
                     ),
-                    items: listOfimages,
+                  ),
+                ),
+                CarouselSlider.builder(
+                  itemBuilder: (context, index, realIdx) => Container(),
+                  itemCount: listOfimages.length,
+                  options: CarouselOptions(
+                    height: 550,
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 1.0,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 5),
+                    enlargeCenterPage: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
                   ),
                 ),
                 CustomPaint(
                   size: size,
                   painter: ShapePathPainter(),
+                ),
+                Transform.translate(
+                  offset: Offset(size.width * 0.25, size.height * 0.1),
+                  child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
                 Transform.translate(
                   offset: Offset(5, size.height * 0.95),
