@@ -17,8 +17,8 @@ class _RegisterpageState extends State<Registerpage> {
     double largura = MediaQuery.of(context).size.width;
     double altura = MediaQuery.of(context).size.height;
 
-    final List<String> _sexList = ['Um', 'Dois'];
-    String _selectedSex = 'Um';
+    final List<String> _sexList = ['Masculino', 'Feminino', 'Não definido'];
+    String? _selectedSex;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -48,22 +48,34 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
               ),
             ),
+            // DropdownButton(
+            //   value: _selectedItem,
+            //   items: _dropDownItems.map((String item) {
+            //     return DropdownMenuItem(
+            //       value: item,
+            //       child: Text(item),
+            //     );
+            //   }).toList(),
+            //   onChanged: (String? value) {
+            //     setState(() {
+            //       _selectedItem = value!;
+            //       print(value);
+            //     });
+            //   },
+            //   icon: const Icon(Icons.arrow_drop_down),
+            // ),
             DropdownButton(
-              value: _selectedSex,
-              items: _sexList.map((String item) {
-                return DropdownMenuItem(
-                  value: item,
-                  child: Text(item),
-                );
-              }).toList(),
-              onChanged: (String? value) {
-                setState(() {
-                  _selectedSex = value!;
-                  print(value);
-                });
-              },
-              icon: const Icon(Icons.arrow_drop_down),
-            ),
+                hint: Text('Sexo:'),
+                value: _selectedSex,
+                items: _sexList
+                    .map((item) =>
+                        DropdownMenuItem(value: item, child: Text("$item")))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedSex = value;
+                  });
+                }),
             Container(
               width: largura,
               height: 60,
