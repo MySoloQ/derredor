@@ -11,15 +11,14 @@ class Registerpage extends StatefulWidget {
   State<Registerpage> createState() => _RegisterpageState();
 }
 
-List<String> sexo = ['Masculino', 'Feminino', 'Não definido'];
-
 class _RegisterpageState extends State<Registerpage> {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
     double altura = MediaQuery.of(context).size.height;
-    String sexoSelecionado = '';
-    // String _dropdownValue = 'One';
+
+    final List<String> _sexList = ['Um', 'Dois'];
+    String _selectedSex = 'Um';
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -49,6 +48,22 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
               ),
             ),
+            DropdownButton(
+              value: _selectedSex,
+              items: _sexList.map((String item) {
+                return DropdownMenuItem(
+                  value: item,
+                  child: Text(item),
+                );
+              }).toList(),
+              onChanged: (String? value) {
+                setState(() {
+                  _selectedSex = value!;
+                  print(value);
+                });
+              },
+              icon: const Icon(Icons.arrow_drop_down),
+            ),
             Container(
               width: largura,
               height: 60,
@@ -76,22 +91,6 @@ class _RegisterpageState extends State<Registerpage> {
                       )),
                 ),
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: sexo.map((item) {
-                return RadioListTile(
-                  value: item,
-                  groupValue: sexoSelecionado,
-                  onChanged: (value) {
-                    sexoSelecionado = value!;
-                    setState(() {});
-                  },
-                  title: Text("Titulo"),
-                  subtitle: Text("Subtitulo $item"),
-                  activeColor: Colors.red,
-                );
-              }).toList(),
             ),
             Container(
               width: largura,
