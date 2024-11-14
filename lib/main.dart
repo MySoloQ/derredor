@@ -1,3 +1,4 @@
+import 'package:derredor/pages/paginaTeste.dart';
 import 'package:flutter/material.dart';
 import 'package:derredor/pages/InitialPage.dart';
 
@@ -16,6 +17,7 @@ Widget build(BuildContext context) {
     initialRoute: 'initialPage',
     routes: {
       'initialPage': (context) => const Initialpage(),
+      'paginaTeste': (context) => const Paginateste(),
     },
   );
 }
