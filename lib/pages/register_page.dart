@@ -41,7 +41,7 @@ class _RegisterpageState extends State<Registerpage> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
                       child: Text(
-                        "Cadastro",
+                        "Sing-In",
                         style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
@@ -50,6 +50,17 @@ class _RegisterpageState extends State<Registerpage> {
                     ),
                   ],
                 ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
+                  child: Container(
+                    child: Text(
+                        "Para continuar precisamos de algumas informações"),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
                 Container(
                   width: largura,
                   height: 60,
