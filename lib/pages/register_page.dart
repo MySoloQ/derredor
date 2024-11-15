@@ -220,7 +220,7 @@ class _RegisterpageState extends State<Registerpage> {
                 onPressed: () => {},
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(largura / 2, 50),
-                    backgroundColor: Style.Azul,
+                    backgroundColor: StyleApp.Azul,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
                 child: Text("CADASTRAR",
