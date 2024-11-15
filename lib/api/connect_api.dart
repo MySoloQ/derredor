@@ -8,10 +8,9 @@ class ConnectApi {
     user: 'jvvm2007_am',
     port: 3306,
     password: 'ihnmaims109',
-    db: 'jvvm2007_am_app_db',
+    db: 'jvvm2007_derredor',
   );
   Future<MySqlConnection> connecting() async {
-
     return await MySqlConnection.connect(connection);
   }
 
@@ -19,30 +18,41 @@ class ConnectApi {
     final connect = await connecting();
 
     try {
-      var result = await connect.query(
+      await connect.query(
         'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
         [user.userName, user.email, user.password],
       );
-      print('Inserted user id=${result.insertId}');
-    } catch (e) {
-      print('Error: $e');
+    } catch (indentifier) {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Verifique sua conexão')),
+      );
     } finally {
       await connect.close();
     }
   }
-  Future<void> selectProcess(Users user, BuildContext context) async {
-    final connect = await connecting();
 
+  Future<bool> selectProcess(Users user, bool valid, BuildContext context) async {
+    final connect = await connecting();
     try {
-      var result = await connect.query(
-        'SELECT username, ',
-        [user.userName, user.email, user.password],
-      );
-      print('Inserted user id=${result.insertId}');
+      var result =
+          await connect.query('SELECT username,password FROM users WHERE 1');
+
+      for (var row in result) {
+        var field = row.getRange(0, 2);
+        if (user.userName == field.elementAt(0) &&
+            user.password == field.elementAt(1)) {
+          return true;
+        }
+      }
     } catch (e) {
-      print('Error: $e');
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Verifique sua conexão')),
+      );
     } finally {
       await connect.close();
     }
+    return false;
   }
 }

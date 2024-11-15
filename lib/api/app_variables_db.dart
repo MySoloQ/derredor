@@ -40,11 +40,19 @@ class Users with ChangeNotifier {
   }
 }
 
-class LoginProcess {
-  void loginVerification(String email, String password) {
+class LoginProcess with ChangeNotifier {
+  bool loginValid = false;
+  void setValid(bool valid) {
+    loginValid = valid;
+    notifyListeners();
+  }
+
+  Future<bool> loginVerification(
+      String username, String password, BuildContext context) async {
     Users loginUser = Users();
-    loginUser.setEmail(email);
+    loginUser.setName(username);
     loginUser.setPassword(password);
+    return await ConnectApi().selectProcess(loginUser, loginValid, context);
   }
 }
 

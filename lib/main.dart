@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:derredor/api/app_variables_db.dart';
 import 'package:derredor/functions.dart';
 import 'package:provider/provider.dart';
-import 'screens/login_screen.dart';
+import 'package:derredor/pages/login_page.dart';
 
 void main() {
   runApp(

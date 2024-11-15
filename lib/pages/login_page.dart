@@ -1,6 +1,8 @@
+// ignore: file_names
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:derredor/api/app_variables_db.dart';
 import 'package:derredor/styles.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,16 +17,17 @@ class _LoginScreenState extends State<LoginScreen> {
   ShapePathPainter customShape = ShapePathPainter();
   final _loginKey = GlobalKey<FormState>();
   int _currentIndex = 0;
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  List<String> listOfimages = [
+    'assets/jalapao.png',
+    'assets/natividade.png',
+    'assets/praça_girassois.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    List<String> listOfimages = [
-      'assets/jalapao.png',
-      'assets/natividade.png',
-      'assets/praça_girassois.png',
-    ];
-
     Size size = Provider.of<AppVariablesDb>(context, listen: false)
         .screen
         .screenSize(context);
@@ -38,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Transform.translate(
                   offset: const Offset(0, 0),
                   child: AnimatedSwitcher(
-                    duration: Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 500),
                     child: Image.asset(
                       height: size.height,
                       listOfimages[_currentIndex],
@@ -71,10 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   painter: ShapePathPainter(),
                 ),
                 Transform.translate(
-                  offset: Offset(size.width * 0.25, size.height * 0.1),
-                  child: Text(
+                  offset: Offset(size.width * 0.23, size.height * 0.1),
+                  child: const Text(
                     'Login',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 25),
                   ),
                 ),
                 Transform.translate(
@@ -87,17 +90,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Column(
                           children: [
                             TextFormField(
-                              controller: _emailController,
+                              controller: _usernameController,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: loginFormField(
-                                  'Your email', 'Enter your email'),
+                              decoration: loginFormField('Seu nome de usuário',
+                                  'Insira seu nome de usuário'),
                               style: TextStyle(color: StyleApp.textColors),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please, enter a email.';
-                                } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                                    .hasMatch(value)) {
-                                  return 'Please, enter a valid email.';
+                                  return 'Por favor entre um nome de usuário.';
+                                } else if (EmailValidator.validate(
+                                    _usernameController.text)) {
+                                  return 'Por favor entre um nome de usuário válido.';
                                 }
                                 return null;
                               },
@@ -122,27 +125,36 @@ class _LoginScreenState extends State<LoginScreen> {
                               obscureText: true,
                             ),
                             const SizedBox(
-                              height: 10,
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Text(
-                                '',
-                                style: TextStyle(color: StyleApp.textColors),
-                              ),
-                            ),
-                            const SizedBox(
                               height: 25,
                             ),
                             ElevatedButton(
-                              onPressed: () {
-                                if (_loginKey.currentState!.validate()) {
-                                  Navigator.popAndPushNamed(
-                                      context, '/CatalogueScreen');
-                                }
-                              },
-                              child: const Text('Submit'),
-                            ),
+                                onPressed: () async {
+                                  if (_loginKey.currentState!.validate()) {
+                                    if (await Provider.of<AppVariablesDb>(
+                                            context,
+                                            listen: false)
+                                        .loginProcess
+                                        .loginVerification(
+                                            _usernameController.text,
+                                            _passwordController.text,
+                                            context)) {
+                                      // ignore: use_build_context_synchronously
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text('Login válido')),
+                                      );
+                                    } else {
+                                      // ignore: use_build_context_synchronously
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text('Login inválido')),
+                                      );
+                                    }
+                                  }
+                                },
+                                child: const Text('Enviar')),
                           ],
                         ),
                       ),
@@ -159,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
