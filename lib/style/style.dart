@@ -7,4 +7,5 @@ class StyleApp {
   static const Color detailsColor_2 = Color(0xFFFE9600);
   static const Color detailsWhite1 = Colors.white;
   static const Color detailsWhite2 = Color(0xCFCFCFFF);
+  static const Color detailsWhite3 = Color(0xCFFF0000);
 }

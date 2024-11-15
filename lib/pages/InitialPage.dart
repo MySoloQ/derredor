@@ -15,9 +15,10 @@ class _InitialpageState extends State<Initialpage> {
   int _currentIndex = 0;
 
   final List<String> images = [
-    'assets/fervedouro_bela_vista_1.png',
-    'assets/dunas_jalapao_1.png',
-    'assets/praca_girassois_1.png',
+    'assets/images/backgrounds/initial_page/dunas_jalapao_initial.png',
+    'assets/images/backgrounds/initial_page/fervedouro_bela_vista_initial.png',
+    'assets/images/backgrounds/initial_page/praca_girassois_initial.png',
+    'assets/images/backgrounds/initial_page/fervedouro_initial.png',
   ];
 
   @override
@@ -216,7 +217,9 @@ class _InitialpageState extends State<Initialpage> {
                               minimumSize:
                                   WidgetStatePropertyAll<Size>(Size(300, 50)),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'registerPage');
+                            },
                           ),
                         ),
                       ],
