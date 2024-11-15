@@ -123,7 +123,7 @@ class _InitialpageState extends State<Initialpage> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, 'paginaTeste');
+                            Navigator.pushNamed(context, '/LoginScreen');
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -216,7 +216,7 @@ class _InitialpageState extends State<Initialpage> {
                               minimumSize:
                                   WidgetStatePropertyAll<Size>(Size(300, 50)),
                             ),
-                            onPressed: () {},
+                            onPressed: () {Navigator.pushNamed(context, 'registerPage');},
                           ),
                         ),
                       ],
