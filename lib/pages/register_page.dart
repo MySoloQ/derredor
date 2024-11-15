@@ -1,8 +1,5 @@
-import 'dart:ffi' as ffi;
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:derredor/style/style.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 
 class Registerpage extends StatefulWidget {
   const Registerpage({super.key});
@@ -45,7 +42,7 @@ class _RegisterpageState extends State<Registerpage> {
                         style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
-                            color: Style.Azul),
+                            color: StyleApp.detailsLago1),
                       ),
                     ),
                   ],
@@ -220,7 +217,7 @@ class _RegisterpageState extends State<Registerpage> {
                 onPressed: () => {},
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(largura / 2, 50),
-                    backgroundColor: Style.Azul,
+                    backgroundColor: StyleApp.detailsLago1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
                 child: Text("CADASTRAR",
