@@ -18,6 +18,18 @@ String _labelText = "Data de nascimento";
 bool _inObscured = true;
 
 class _RegisterpageState extends State<Registerpage> {
+  final TextEditingController _controller = TextEditingController();
+  final List<String> _emailList = [
+    '@gmail.com',
+    '@yahoo.com',
+    '@outlook.com',
+    '@hotmail.com',
+    '@live.com',
+    '@aol.com'
+  ];
+
+  String? _selectedEmail;
+
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
@@ -27,7 +39,11 @@ class _RegisterpageState extends State<Registerpage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, 'initialPage');
+            },
+            icon: Icon(Icons.arrow_back)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -45,7 +61,7 @@ class _RegisterpageState extends State<Registerpage> {
                         style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
-                            color: Style.Azul),
+                            color: StyleApp.detailsLago1),
                       ),
                     ),
                   ],
@@ -134,10 +150,42 @@ class _RegisterpageState extends State<Registerpage> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
+                      controller: _controller,
                       decoration: InputDecoration(
                           labelText: "Email",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
+                          suffixIcon: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              hint: Text('@'),
+                              value: _selectedEmail,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  _selectedEmail = newValue;
+                                  if (_controller.text.contains('@')) {
+                                    _controller.text =
+                                        _controller.text.split('@')[0] +
+                                            newValue!;
+                                  } else {
+                                    _controller.text =
+                                        _controller.text + newValue!;
+                                  }
+                                  _controller.selection =
+                                      TextSelection.fromPosition(
+                                    TextPosition(
+                                        offset: _controller.text.length),
+                                  );
+                                });
+                              },
+                              items: _emailList.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
                           )),
                     ),
                   ),
@@ -220,7 +268,7 @@ class _RegisterpageState extends State<Registerpage> {
                 onPressed: () => {},
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(largura / 2, 50),
-                    backgroundColor: Style.Azul,
+                    backgroundColor: StyleApp.detailsLago1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
                 child: Text("CADASTRAR",
@@ -235,11 +283,17 @@ class _RegisterpageState extends State<Registerpage> {
   }
 
   Future<void> _selectDate() async {
+    final DateTime currentDate = DateTime.now();
+    final DateTime initialDate =
+        DateTime(currentDate.year - 18, currentDate.month, currentDate.day);
+    final DateTime firstDate = DateTime(1900);
+    final DateTime lastDate = initialDate;
+
     DateTime? _picked = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
+        initialDate: initialDate,
+        firstDate: firstDate,
+        lastDate: lastDate);
 
     if (_picked != null) {
       setState(() {

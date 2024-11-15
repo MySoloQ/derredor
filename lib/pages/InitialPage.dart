@@ -216,7 +216,9 @@ class _InitialpageState extends State<Initialpage> {
                               minimumSize:
                                   WidgetStatePropertyAll<Size>(Size(300, 50)),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'registerPage');
+                            },
                           ),
                         ),
                       ],
