@@ -4,14 +4,14 @@ import 'package:derredor/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-class Splashscreen extends StatefulWidget {
-  const Splashscreen({super.key});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<Splashscreen> createState() => _SplashscreenState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashscreenState extends State<Splashscreen> with SingleTickerProviderStateMixin{
+class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin{
   late AnimationController _controller;
   late Animation<double> _animation;
   late Animation<double> _reverseAnimation;
