@@ -8,10 +8,22 @@ class AppVariablesDb with ChangeNotifier {
 }
 
 class ScreenSize {
+
+  double screenHeight(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+
+    return height;
+  }
+
+  double screenWidth(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    return width;
+  }
+
   Size screenSize(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    return Size(height, width);
+    return Size(width, height);
   }
 }
 

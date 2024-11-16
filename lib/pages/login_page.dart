@@ -32,6 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
         .screen
         .screenSize(context);
     return Scaffold(
+
+      backgroundColor: StyleApp.buttonsColors,
+
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
@@ -81,81 +84,86 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Transform.translate(
-                  offset: Offset(5, size.height * 0.95),
-                  child: SizedBox(
-                    width: 350,
-                    child: Form(
-                      key: _loginKey,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              controller: _usernameController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: loginFormField('Seu nome de usuário',
-                                  'Insira seu nome de usuário'),
-                              style: TextStyle(color: StyleApp.textColors),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Por favor entre um nome de usuário.';
-                                } else if (EmailValidator.validate(
-                                    _usernameController.text)) {
-                                  return 'Por favor entre um nome de usuário válido.';
-                                }
-                                return null;
-                              },
-                              obscureText: false,
-                            ),
-                            const SizedBox(
-                              height: 50,
-                            ),
-                            TextFormField(
-                              controller: _passwordController,
-                              decoration: loginFormField(
-                                  'Your password', 'Enter your password'),
-                              style: TextStyle(color: StyleApp.textColors),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Please, enter a password.';
-                                } else if (value.length < 8) {
-                                  return 'Please, enter a passoword with more than 8 characters.';
-                                }
-                                return null;
-                              },
-                              obscureText: true,
-                            ),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            ElevatedButton(
-                                onPressed: () async {
-                                  if (_loginKey.currentState!.validate()) {
-                                    if (await Provider.of<AppVariablesDb>(
-                                            context,
-                                            listen: false)
-                                        .loginProcess
-                                        .loginVerification(
-                                            _usernameController.text,
-                                            _passwordController.text,
-                                            context)) {
-                                      // ignore: use_build_context_synchronously
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                            content: Text('Login válido')),
-                                      );
-                                    } else {
-                                      // ignore: use_build_context_synchronously
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                            content: Text('Login inválido')),
-                                      );
-                                    }
+                  offset: Offset(0, size.height * .6),
+                  child: Align(
+                    alignment: const Alignment(0, 0),
+                    child: SizedBox(
+                      width: 350,
+                      child: Form(
+                        key: _loginKey,
+                        child: SafeArea(
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                controller: _usernameController,
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: loginFormField(
+                                    'Seu nome de usuário',
+                                    'Insira seu nome de usuário'),
+                                style: TextStyle(color: StyleApp.textColors),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Por favor entre um nome de usuário.';
+                                  } else if (EmailValidator.validate(
+                                      _usernameController.text)) {
+                                    return 'Por favor entre um nome de usuário válido.';
                                   }
+                                  return null;
                                 },
-                                child: const Text('Enviar')),
-                          ],
+                                obscureText: false,
+                              ),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              TextFormField(
+                                controller: _passwordController,
+                                decoration: loginFormField(
+                                    'Your password', 'Enter your password'),
+                                style: TextStyle(color: StyleApp.textColors),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please, enter a password.';
+                                  } else if (value.length < 8) {
+                                    return 'Please, enter a passoword with more than 8 characters.';
+                                  }
+                                  return null;
+                                },
+                                obscureText: true,
+                              ),
+                              const SizedBox(
+                                height: 25,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    if (_loginKey.currentState!.validate()) {
+                                      if (await Provider.of<AppVariablesDb>(
+                                              context,
+                                              listen: false)
+                                          .loginProcess
+                                          .loginVerification(
+                                              _usernameController.text,
+                                              _passwordController.text,
+                                              context)) {
+                                        // ignore: use_build_context_synchronously
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              content: Text('Login válido')),
+                                        );
+                                      } else {
+                                        // ignore: use_build_context_synchronously
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              content: Text('Login inválido')),
+                                        );
+                                      }
+                                    }
+                                  },
+                                  child: const Text('Enviar')),
+                            ],
+                          ),
+
                         ),
                       ),
                     ),
