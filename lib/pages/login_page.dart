@@ -32,7 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
         .screen
         .screenSize(context);
     return Scaffold(
+
       backgroundColor: StyleApp.buttonsColors,
+
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Column(
@@ -161,6 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: const Text('Enviar')),
                             ],
                           ),
+
                         ),
                       ),
                     ),

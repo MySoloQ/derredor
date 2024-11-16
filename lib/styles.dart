@@ -44,6 +44,7 @@ class ShapePathPainter extends CustomPainter {
     final paintTop = Paint()
       ..color = StyleApp.detailsColors
       ..style = PaintingStyle.fill;
+    
     path.moveTo(0, size.height * .5);
     path.cubicTo(size.width * .24, size.height * .4, size.width * .8,
         size.height * .7, size.width, size.height * 0.5);
@@ -58,6 +59,7 @@ class ShapePathPainter extends CustomPainter {
     pathTop.cubicTo(size.width * -20, size.height * .00009, size.width + 15,
         size.height, 0, size.height);
     canvas.drawPath(pathTop, paintTop);
+
     pathTop.close();
   }
 

@@ -8,6 +8,7 @@ class AppVariablesDb with ChangeNotifier {
 }
 
 class ScreenSize {
+
   double screenHeight(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
 

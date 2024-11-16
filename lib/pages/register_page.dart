@@ -1,5 +1,9 @@
-import 'package:derredor/style/style.dart';
+
+import 'dart:ffi' as ffi;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:derredor/style/style.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Registerpage extends StatefulWidget {
   const Registerpage({super.key});
@@ -43,6 +47,7 @@ class _RegisterpageState extends State<Registerpage> {
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: StyleApp.detailsLago1),
+
                       ),
                     ),
                   ],
