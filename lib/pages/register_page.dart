@@ -55,7 +55,7 @@ class _RegisterpageState extends State<Registerpage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Text(
                         "Sing-In",
                         style: TextStyle(
@@ -66,20 +66,13 @@ class _RegisterpageState extends State<Registerpage> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
-                  child: Container(
-                    child: Text(
-                        "Para continuar precisamos de algumas informações"),
-                  ),
-                ),
               ],
             ),
             Column(
               children: [
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
@@ -94,7 +87,7 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
@@ -110,7 +103,7 @@ class _RegisterpageState extends State<Registerpage> {
                   padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                   child: Container(
                     width: largura,
-                    height: 40,
+                    height: 60,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(15)),
@@ -144,49 +137,44 @@ class _RegisterpageState extends State<Registerpage> {
                     ),
                   ),
                 ),
-                Container(
-                  width: largura,
-                  height: 60,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
-                    child: TextFormField(
-                      controller: _controller,
-                      decoration: InputDecoration(
-                          labelText: "Email",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                          ),
-                          suffixIcon: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              hint: Text('@'),
-                              value: _selectedEmail,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  _selectedEmail = newValue;
-                                  if (_controller.text.contains('@')) {
-                                    _controller.text =
-                                        _controller.text.split('@')[0] +
-                                            newValue!;
-                                  } else {
-                                    _controller.text =
-                                        _controller.text + newValue!;
-                                  }
-                                  _controller.selection =
-                                      TextSelection.fromPosition(
-                                    TextPosition(
-                                        offset: _controller.text.length),
-                                  );
-                                });
-                              },
-                              items: _emailList.map<DropdownMenuItem<String>>(
-                                  (String value) {
-                                return DropdownMenuItem(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ),
-                          )),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                  child: TextFormField(
+                    maxLines: 1,
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      suffixIcon: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          hint: Text('@'),
+                          value: _selectedEmail,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _selectedEmail = newValue;
+                              if (_controller.text.contains('@')) {
+                                _controller.text =
+                                    _controller.text.split('@')[0] + newValue!;
+                              } else {
+                                _controller.text = _controller.text + newValue!;
+                              }
+                              _controller.selection =
+                                  TextSelection.fromPosition(
+                                TextPosition(offset: _controller.text.length),
+                              );
+                            });
+                          },
+                          items: _emailList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -194,7 +182,7 @@ class _RegisterpageState extends State<Registerpage> {
                   children: [
                     Container(
                       width: largura,
-                      height: 60,
+                      height: 80,
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                         child: TextFormField(
@@ -219,7 +207,7 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
@@ -233,9 +221,9 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: TextFormField(
                       obscureText: _inObscured,
                       decoration: InputDecoration(
@@ -259,11 +247,8 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 90,
-            ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: ElevatedButton(
                 onPressed: () => {},
                 style: ElevatedButton.styleFrom(
