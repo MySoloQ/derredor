@@ -41,23 +41,23 @@ class ShapePathPainter extends CustomPainter {
     final paint = Paint()
       ..color = StyleApp.buttonsColors
       ..style = PaintingStyle.fill;
-    final paintBottom = Paint()
+    final paintTop = Paint()
       ..color = StyleApp.detailsColors
       ..style = PaintingStyle.fill;
-
-    path.moveTo(0, size.height);
-    path.cubicTo(size.width * -0.27, size.height * .45, size.width * .60,
-        size.height, size.width, size.height * 0.85);
-    path.cubicTo(size.width, size.height, size.width, size.height * 1,
-        size.width * 1, size.height);
-    path.addRect(Rect.fromLTRB(0, size.height * 2, size.height, size.width));
+    path.moveTo(0, size.height * .5);
+    path.cubicTo(size.width * .24, size.height * .4, size.width * .8,
+        size.height * .7, size.width, size.height * 0.5);
+    path.cubicTo(size.width * 32, size.height, size.width + 1, size.height, 0,
+        size.height);
     canvas.drawPath(path, paint);
     path.close();
 
-    pathTop.moveTo(0, size.height * .0009);
-    pathTop.cubicTo(size.width * 1, size.height * 1.6, size.width * 3.2,
-        size.height * -3.8, size.width * 0.5, size.height * 0.0009);
-    canvas.drawPath(pathTop, paintBottom);
+    pathTop.moveTo(0, size.height * .009);
+    pathTop.cubicTo(size.width * .24, size.height * .45, size.width * .8,
+        size.height * .0009, size.width, size.height * 0.00009);
+    pathTop.cubicTo(size.width * -20, size.height * .00009, size.width + 15,
+        size.height, 0, size.height);
+    canvas.drawPath(pathTop, paintTop);
     pathTop.close();
   }
 
