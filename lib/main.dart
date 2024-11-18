@@ -1,8 +1,7 @@
-import 'package:derredor/pages/favoritos_page.dart';
-import 'package:derredor/pages/paginaTeste.dart';
+import 'package:derredor/pages/FavoritosPage.dart';
 import 'package:flutter/material.dart';
 import 'package:derredor/pages/InitialPage.dart';
-import 'package:derredor/pages/register_page.dart';
+import 'package:derredor/pages/RegisterPage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -18,7 +17,6 @@ class MainApp extends StatelessWidget {
       initialRoute: 'initialPage',
       routes: {
         'initialPage': (context) => const Initialpage(),
-        'paginaTeste': (context) => const Paginateste(),
         'registerPage': (context) => Registerpage(),
         'favoritosPage': (context) => FavoritosPage(),
       },
