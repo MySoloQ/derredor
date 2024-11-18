@@ -94,9 +94,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Transform.translate(
-                    offset: Offset(size.width *.1, size.height * .3),
-                    child: Text('Login')),
-                Transform.translate(
                   offset: Offset(size.width * .1, size.height * .58),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,3 +1,5 @@
+import 'package:derredor/pages/FavoritosPage.dart';
+import 'package:derredor/pages/HomePage.dart';
 import 'package:derredor/pages/InitialPage.dart';
 import 'package:derredor/pages/LoginPage.dart';
 import 'package:derredor/pages/RegisterPage.dart';
@@ -27,9 +29,11 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: 'homePage',
       routes: {
         '/': (context) => const SplashPage(),
+        'favoritePage' : (context) => const FavoritosPage(),
+        'homePage' : (context) => const HomePage(),
         'initialPage': (context) => const InitialPage(),
         'loginPage': (context) => const LoginPage(),
         'registerPage': (context) => const RegisterPage(),
