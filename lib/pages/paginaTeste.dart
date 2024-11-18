@@ -18,15 +18,15 @@ class _PaginatesteState extends State<Paginateste> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: StyleApp.detailsLago2,
-        title: Text(
-          'Página Teste',
-          style: GoogleFonts.roboto(
-              textStyle: TextStyle(
-                  color: StyleApp.bgColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w200,
-                  letterSpacing: .5)),
-        ),
+        title: Text('Página Teste',
+        style: GoogleFonts.roboto(
+          textStyle: TextStyle(
+            color: StyleApp.bgColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w200,
+            letterSpacing: .5
+          )
+        ),),
       ),
       body: SafeArea(
         child: Center(
