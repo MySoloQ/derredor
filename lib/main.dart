@@ -1,3 +1,4 @@
+import 'package:derredor/pages/FavoritosPage.dart';
 import 'package:derredor/pages/InitialPage.dart';
 import 'package:derredor/pages/LoginPage.dart';
 import 'package:derredor/pages/RegisterPage.dart';
@@ -33,6 +34,7 @@ class _MainAppState extends State<MainApp> {
         'initialPage': (context) => const InitialPage(),
         'loginPage': (context) => const LoginPage(),
         'registerPage': (context) => const RegisterPage(),
+        'favoritosPage': (context) => FavoritosPage(),
       },
     );
   }

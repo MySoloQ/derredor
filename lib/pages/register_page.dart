@@ -1,4 +1,3 @@
-
 import 'dart:ffi' as ffi;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,18 @@ String _labelText = "Data de nascimento";
 bool _inObscured = true;
 
 class _RegisterpageState extends State<Registerpage> {
+  final TextEditingController _controller = TextEditingController();
+  final List<String> _emailList = [
+    '@gmail.com',
+    '@yahoo.com',
+    '@outlook.com',
+    '@hotmail.com',
+    '@live.com',
+    '@aol.com'
+  ];
+
+  String? _selectedEmail;
+
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
@@ -28,7 +39,11 @@ class _RegisterpageState extends State<Registerpage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, 'initialPage');
+            },
+            icon: Icon(Icons.arrow_back)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -40,24 +55,16 @@ class _RegisterpageState extends State<Registerpage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Text(
                         "Sing-In",
                         style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: StyleApp.detailsLago1),
-
                       ),
                     ),
                   ],
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
-                  child: Container(
-                    child: Text(
-                        "Para continuar precisamos de algumas informações"),
-                  ),
                 ),
               ],
             ),
@@ -65,7 +72,7 @@ class _RegisterpageState extends State<Registerpage> {
               children: [
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
@@ -80,7 +87,7 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
@@ -96,7 +103,7 @@ class _RegisterpageState extends State<Registerpage> {
                   padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                   child: Container(
                     width: largura,
-                    height: 40,
+                    height: 60,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(15)),
@@ -130,17 +137,44 @@ class _RegisterpageState extends State<Registerpage> {
                     ),
                   ),
                 ),
-                Container(
-                  width: largura,
-                  height: 60,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          labelText: "Email",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                          )),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                  child: TextFormField(
+                    maxLines: 1,
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      labelText: "Email",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
+                      suffixIcon: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          hint: Text('@'),
+                          value: _selectedEmail,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _selectedEmail = newValue;
+                              if (_controller.text.contains('@')) {
+                                _controller.text =
+                                    _controller.text.split('@')[0] + newValue!;
+                              } else {
+                                _controller.text = _controller.text + newValue!;
+                              }
+                              _controller.selection =
+                                  TextSelection.fromPosition(
+                                TextPosition(offset: _controller.text.length),
+                              );
+                            });
+                          },
+                          items: _emailList
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -148,7 +182,7 @@ class _RegisterpageState extends State<Registerpage> {
                   children: [
                     Container(
                       width: largura,
-                      height: 60,
+                      height: 80,
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                         child: TextFormField(
@@ -173,7 +207,7 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
@@ -187,9 +221,9 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
                 Container(
                   width: largura,
-                  height: 60,
+                  height: 80,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: TextFormField(
                       obscureText: _inObscured,
                       decoration: InputDecoration(
@@ -213,11 +247,8 @@ class _RegisterpageState extends State<Registerpage> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 90,
-            ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: ElevatedButton(
                 onPressed: () => {},
                 style: ElevatedButton.styleFrom(
@@ -237,11 +268,17 @@ class _RegisterpageState extends State<Registerpage> {
   }
 
   Future<void> _selectDate() async {
+    final DateTime currentDate = DateTime.now();
+    final DateTime initialDate =
+        DateTime(currentDate.year - 18, currentDate.month, currentDate.day);
+    final DateTime firstDate = DateTime(1900);
+    final DateTime lastDate = initialDate;
+
     DateTime? _picked = await showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
+        initialDate: initialDate,
+        firstDate: firstDate,
+        lastDate: lastDate);
 
     if (_picked != null) {
       setState(() {
