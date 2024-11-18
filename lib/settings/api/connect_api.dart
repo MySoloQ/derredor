@@ -20,28 +20,38 @@ class ConnectApi {
 
     try {
       await connect.query(
-        'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-        [user.userName, user.email, user.password],
+        'INSERT INTO users (name,surname,gender,email,username,password,age) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [
+          user.name,
+          user.surname,
+          user.sex,
+          user.email,
+          user.user,
+          user.password,
+          user.age
+        ],
       );
     } catch (indentifier) {
+      var error = indentifier.toString();
+      print(error);
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Verifique sua conexão')),
+        const SnackBar(content: Text('Verifique sua conexão:  ')),
       );
     } finally {
       await connect.close();
     }
   }
 
-  Future<bool> selectProcess(Users user, bool valid, BuildContext context) async {
+  Future<bool> selectProcess(
+      Users user, bool valid, BuildContext context) async {
     final connect = await connecting();
     try {
-      var result =
-          await connect.query('SELECT username,password FROM users WHERE 1');
+      var result = await connect.query('SELECT username,password FROM users');
 
       for (var row in result) {
         var field = row.getRange(0, 2);
-        if (user.userName == field.elementAt(0) &&
+        if (user.user == field.elementAt(0) &&
             user.password == field.elementAt(1)) {
           return true;
         }

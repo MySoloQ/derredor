@@ -84,6 +84,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
                           ),
                           Padding(
                             // titulo do item favoritado
+                            
                             padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                             child: Container(
                               height: 30,

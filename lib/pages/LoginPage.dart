@@ -115,7 +115,6 @@ class _LoginPageState extends State<LoginPage> {
                                 height: 70,
                                 child: TextFormField(
                                   controller: _usernameController,
-                                  keyboardType: TextInputType.emailAddress,
                                   decoration: loginFormField(
                                       'Insira seu nome de usuário'),
                                   style: StyleTextLoginScreen.googleRobotoText,
@@ -150,11 +149,11 @@ class _LoginPageState extends State<LoginPage> {
                                       if (value!.isEmpty) {
                                         return 'Por favor, insira sua senha.';
                                       } else if (value.length < 8) {
-                                        return 'Por favor, insira sua senho com mais de 8 caracteres.';
+                                        return 'Por favor, insira sua senha com mais de 8 caracteres.';
                                       }
                                       return null;
                                     },
-                                    obscureText: true,
+                                    obscureText: false,
                                   ),
                                 ),
                               ),
