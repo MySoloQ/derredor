@@ -1,34 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StyleApp {
   static const Color bgColor = Color(0xFFFFD700);
   static const Color detailsLago1 = Color(0xFF007FFF);
   static const Color detailsLago2 = Color(0xFF013976);
   static const Color detailsColor_2 = Color(0xFFFE9600);
-  static const Color detailsWhite1 = Colors.white;
   static const Color detailsWhite2 = Color(0xCFCFCFFF);
   static const Color detailsWhite3 = Color(0xCFFF0000);
+  static const Color textColors = Colors.black;
+  static const Color detailsWhite1 = Colors.white;
 
   static Color buttonsColors = const Color(0xFF007FFF);
   static Color detailsColors = const Color(0xFFFFD700);
   static Color bgColors = const Color(0xFFFFFFFF);
-  static Color textColors = Colors.black;
   static Color errorColors = const Color(0xFFDA2C43);
 }
 
-InputDecoration loginFormField(String? label, String? hint) {
+// Estilo dos textos da tela de login
+class StyleTextLoginScreen {
+  static TextStyle googleRobotoCaption = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: StyleApp.textColors,
+  );
+
+  static TextStyle googleRobotoText = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w200,
+    color: StyleApp.textColors,
+  );
+}
+
+InputDecoration loginFormField(String? hint) {
   return InputDecoration(
+    filled: true,
+    fillColor: Colors.white,
     hintText: hint,
-    labelText: label,
-    hintStyle: TextStyle(color: StyleApp.detailsColors),
-    labelStyle: TextStyle(color: StyleApp.detailsColors),
+    hintFadeDuration: Duration(seconds: 1),
+    hintStyle: TextStyle(color: StyleApp.textColors),
+    labelStyle: TextStyle(color: StyleApp.textColors),
+
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: BorderSide(color: StyleApp.detailsColors, width: 3),
+      borderSide: BorderSide(color: StyleApp.detailsLago2, width: 3),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: BorderSide(color: StyleApp.detailsColors, width: 2),
+      borderSide: BorderSide(color: StyleApp.detailsLago2, width: 2),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),

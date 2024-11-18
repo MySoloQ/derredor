@@ -2,6 +2,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../settings/api/app_variables_db.dart';
@@ -76,98 +77,132 @@ class _LoginPageState extends State<LoginPage> {
                   painter: ShapePathPainter(),
                 ),
                 Transform.translate(
-                  offset: Offset(size.width * 0.23, size.height * 0.1),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
-                Transform.translate(
-                  offset: Offset(size.width * .1, size.height * .6),
-                  child: SizedBox(
-                    width: 350,
-                    child: Form(
-                      key: _loginKey,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
-                            child: TextFormField(
-                              controller: _usernameController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: loginFormField('Seu nome de usuário',
-                                  'Insira seu nome de usuário'),
-                              style: TextStyle(color: StyleApp.textColors),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Por favor entre um nome de usuário.';
-                                } else if (EmailValidator.validate(
-                                    _usernameController.text)) {
-                                  return 'Por favor entre um nome de usuário válido.';
-                                }
-                                return null;
-                              },
-                              obscureText: false,
+                  offset: Offset(0, size.height * .05),
+                  child: Center(
+                    child: Container(
+                        width: size.width * .50,
+                        height: size.width * .50,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                              'assets/icons/icon_sol_tocantins_2.png',
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
-                            child: TextFormField(
-                              controller: _passwordController,
-                              decoration: loginFormField(
-                                  'Your password', 'Enter your password'),
-                              style: TextStyle(color: StyleApp.textColors),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Please, enter a password.';
-                                } else if (value.length < 8) {
-                                  return 'Please, enter a passoword with more than 8 characters.';
-                                }
-                                return null;
-                              },
-                              obscureText: true,
-                            ),
-                          ),
-                          ElevatedButton(
-                              onPressed: () async {
-                                if (_loginKey.currentState!.validate()) {
-                                  if (await Provider.of<AppVariablesDb>(context,
-                                          listen: false)
-                                      .loginProcess
-                                      .loginVerification(
-                                          _usernameController.text,
-                                          _passwordController.text,
-                                          context)) {
-                                    // ignore: use_build_context_synchronously
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text('Login válido')),
-                                    );
-                                  } else {
-                                    // ignore: use_build_context_synchronously
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text('Login inválido')),
-                                    );
-                                  }
-                                }
-                              },
-                              child: const Text('Enviar')),
-                        ],
-                      ),
+                        ),
                     ),
                   ),
                 ),
                 Transform.translate(
-                    offset:
-                    Offset(size.width * .15, size.height * .90),
+                    offset: Offset(size.width *.1, size.height * .3),
+                    child: Text('Login')),
+                Transform.translate(
+                  offset: Offset(size.width * .1, size.height * .58),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Usuário'
+                      ,style: StyleTextLoginScreen.googleRobotoCaption),
+                      SizedBox(
+                        width: 350,
+                        child: Form(
+                          key: _loginKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 70,
+                                child: TextFormField(
+                                  controller: _usernameController,
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: loginFormField(
+                                      'Insira seu nome de usuário'),
+                                  style: StyleTextLoginScreen.googleRobotoText,
+                                  autofocus: true,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Por favor entre um nome de usuário.';
+                                    } else if (EmailValidator.validate(
+                                        _usernameController.text)) {
+                                      return 'Por favor entre um nome de usuário válido.';
+                                    }
+                                    return null;
+                                  },
+                                  obscureText: false,
+                                ),
+                              ),
+                              SizedBox(
+                                child: Text('Senha'
+                                    ,style: StyleTextLoginScreen.googleRobotoCaption),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 28),
+                                child: SizedBox(
+                                  height: 70,
+                                  width: 350,
+                                  child: TextFormField(
+                                    controller: _passwordController,
+                                    decoration:
+                                        loginFormField('Insira sua senha'),
+                                    style: StyleTextLoginScreen.googleRobotoText,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Por favor, insira sua senha.';
+                                      } else if (value.length < 8) {
+                                        return 'Por favor, insira sua senho com mais de 8 caracteres.';
+                                      }
+                                      return null;
+                                    },
+                                    obscureText: true,
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: ElevatedButton(
+                                    onPressed: () async {
+                                      if (_loginKey.currentState!.validate()) {
+                                        if (await Provider.of<AppVariablesDb>(
+                                                context,
+                                                listen: false)
+                                            .loginProcess
+                                            .loginVerification(
+                                                _usernameController.text,
+                                                _passwordController.text,
+                                                context)) {
+                                          // ignore: use_build_context_synchronously
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                                content: Text('Login válido'))
+                                          );
+                                        } else {
+                                          // ignore: use_build_context_synchronously
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                                content: Text('Login inválido')),
+                                          );
+                                        }
+                                      }
+                                    },
+                                    child: const Text('Enviar')),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Transform.translate(
+                    offset: Offset(size.width * .15, size.height * .90),
                     child: Center(
                       child: Row(
                         children: [
                           Text(
                             'Não possui cadastro?',
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 15),
+                            style: TextStyle(color: Colors.white, fontSize: 15),
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(
@@ -178,20 +213,19 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.pushNamed(context, 'registerPage');
                             },
                             child: const Text(
-                              'Crie um novo cadastro',
+                              'CADASTRAR-SE',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.white,
-                                  decorationThickness: 2,
-
+                                color: Colors.white,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline,
+                                decorationColor: Colors.white,
+                                decorationThickness: 2,
                               ),
                             ),
                           ),
                         ],
                       ),
-                    ))
+                    )),
               ],
             ),
           ],
