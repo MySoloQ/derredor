@@ -3,21 +3,21 @@ import 'package:derredor/style/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Initialpage extends StatefulWidget {
-  const Initialpage({super.key});
+class InitialPage extends StatefulWidget {
+  const InitialPage({super.key});
 
   @override
-  State<Initialpage> createState() => _InitialpageState();
+  State<InitialPage> createState() => _InitialPageState();
 }
 
-class _InitialpageState extends State<Initialpage> {
-
+class _InitialPageState extends State<InitialPage> {
   int _currentIndex = 0;
 
   final List<String> images = [
-    'assets/fervedouro_bela_vista_1.png',
-    'assets/dunas_jalapao_1.png',
-    'assets/praca_girassois_1.png',
+    'assets/images/backgrounds/initial_page/dunas_jalapao_initial.png',
+    'assets/images/backgrounds/initial_page/fervedouro_bela_vista_initial.png',
+    'assets/images/backgrounds/initial_page/praca_girassois_initial.png',
+    'assets/images/backgrounds/initial_page/fervedouro_initial.png',
   ];
 
   @override
@@ -52,7 +52,8 @@ class _InitialpageState extends State<Initialpage> {
                       height: height * .3,
                       viewportFraction: 1.0,
                       autoPlay: true,
-                      autoPlayInterval: const Duration(milliseconds: 10000),
+                      autoPlayInterval: const Duration(milliseconds: 5000),
+
                       onPageChanged: (index, reason) {
                         setState(() {
                           _currentIndex = index;
@@ -60,30 +61,6 @@ class _InitialpageState extends State<Initialpage> {
                       },
                     ),
                   ),
-                  // Container(
-                  //   height: height / 2,
-                  //   child: CarouselSlider(
-                  //     options: CarouselOptions(height: height/2,
-                  //         aspectRatio: 16/9,
-                  //       viewportFraction: 1.0,
-                  //       enableInfiniteScroll: true,
-                  //       autoPlay: true,
-                  //       autoPlayInterval: Duration(milliseconds: 5000),
-                  //       autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  //       autoPlayCurve: Curves.linearToEaseOut,
-                  //       enlargeCenterPage: false,
-                  //     ),
-                  //     items: [
-                  //       Container(
-                  //         decoration: BoxDecoration(
-                  //           image: DecorationImage(
-                  //               image: AssetImage('assets/fervedouro_bela_vista_1.png',),
-                  //           fit: BoxFit.cover)
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
                   CustomPaint(
                     size: Size(width, height),
                     painter: Painter(),
@@ -123,7 +100,7 @@ class _InitialpageState extends State<Initialpage> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/LoginScreen');
+                            Navigator.pushNamed(context, 'loginPage');
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -216,7 +193,9 @@ class _InitialpageState extends State<Initialpage> {
                               minimumSize:
                                   WidgetStatePropertyAll<Size>(Size(300, 50)),
                             ),
-                            onPressed: () {Navigator.pushNamed(context, 'registerPage');},
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'registerPage');
+                            },
                           ),
                         ),
                       ],
@@ -227,57 +206,5 @@ class _InitialpageState extends State<Initialpage> {
         ],
       ),
     );
-  }
-}
-
-class Painter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paintLago = Paint()
-      ..color = StyleApp.detailsLago1
-      ..style = PaintingStyle.fill;
-
-    final paintDunas = Paint()
-      ..color = StyleApp.bgColor
-      ..style = PaintingStyle.fill;
-
-    final paintPorSol = Paint()
-      ..color = StyleApp.detailsColor_2
-      ..style = PaintingStyle.fill;
-
-    final pathPorSol = Path();
-    pathPorSol.moveTo(0, size.height * .4);
-    pathPorSol.cubicTo(size.width * .24, size.height * .35, size.width * .8,
-        size.height * .55, size.width, size.height * 0.43);
-    pathPorSol.cubicTo(size.width * 40, size.height, size.width + 20,
-        size.height, 0, size.height);
-    pathPorSol.close();
-
-    canvas.drawPath(pathPorSol, paintPorSol);
-
-    final pathLago = Path();
-    pathLago.moveTo(0, size.height * .5);
-    pathLago.cubicTo(size.width * .24, size.height * .4, size.width * .8,
-        size.height * .6, size.width, size.height * 0.4);
-    pathLago.cubicTo(size.width * 30, size.height, size.width + 1, size.height,
-        0, size.height);
-    pathLago.close();
-
-    canvas.drawPath(pathLago, paintLago);
-
-    final pathDunas = Path();
-    pathDunas.moveTo(0, size.height * .5);
-    pathDunas.cubicTo(size.width * .24, size.height * .4, size.width * .8,
-        size.height * .7, size.width, size.height * 0.4);
-    pathDunas.cubicTo(size.width * 32, size.height, size.width + 15,
-        size.height, 0, size.height);
-    pathDunas.close();
-
-    canvas.drawPath(pathDunas, paintDunas);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }
