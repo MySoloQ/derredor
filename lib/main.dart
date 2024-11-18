@@ -12,7 +12,6 @@ void main() {
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(ChangeNotifierProvider(
       create: (context) => AppVariablesDb(), child: const MainApp()));
-
 }
 
 class MainApp extends StatefulWidget {
