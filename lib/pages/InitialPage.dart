@@ -11,7 +11,6 @@ class InitialPage extends StatefulWidget {
 }
 
 class _InitialPageState extends State<InitialPage> {
-
   int _currentIndex = 0;
 
   final List<String> images = [
@@ -54,6 +53,7 @@ class _InitialPageState extends State<InitialPage> {
                       viewportFraction: 1.0,
                       autoPlay: true,
                       autoPlayInterval: const Duration(milliseconds: 5000),
+
                       onPageChanged: (index, reason) {
                         setState(() {
                           _currentIndex = index;
@@ -61,30 +61,6 @@ class _InitialPageState extends State<InitialPage> {
                       },
                     ),
                   ),
-                  // Container(
-                  //   height: height / 2,
-                  //   child: CarouselSlider(
-                  //     options: CarouselOptions(height: height/2,
-                  //         aspectRatio: 16/9,
-                  //       viewportFraction: 1.0,
-                  //       enableInfiniteScroll: true,
-                  //       autoPlay: true,
-                  //       autoPlayInterval: Duration(milliseconds: 5000),
-                  //       autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  //       autoPlayCurve: Curves.linearToEaseOut,
-                  //       enlargeCenterPage: false,
-                  //     ),
-                  //     items: [
-                  //       Container(
-                  //         decoration: BoxDecoration(
-                  //           image: DecorationImage(
-                  //               image: AssetImage('assets/fervedouro_bela_vista_1.png',),
-                  //           fit: BoxFit.cover)
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
                   CustomPaint(
                     size: Size(width, height),
                     painter: Painter(),
@@ -232,5 +208,3 @@ class _InitialPageState extends State<InitialPage> {
     );
   }
 }
-
-

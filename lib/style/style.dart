@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 class StyleApp {
   static const Color bgColor = Color(0xFFFFD700);
   static const Color detailsLago1 = Color(0xFF007FFF);
