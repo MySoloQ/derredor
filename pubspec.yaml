@@ -9,8 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   carousel_slider: ^5.0.0
   google_fonts: ^6.2.1
+  flutter_native_splash: ^2.4.2
+  flutter_launcher_icons: ^0.14.1
+  email_validator: ^3.0.0
+  mysql1: ^0.20.0
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -20,9 +26,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
+    - assets/images/backgrounds/initial_page/
+    - assets/images/backgrounds/login_page/
     - assets/icons/
-    - assets/icons/icon_sol_tocantins.png
-    - assets/fervedouro_bela_vista_1.png
-    - assets/dunas_jalapao_1.png
-    - assets/praca_girassois_1.png

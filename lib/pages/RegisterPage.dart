@@ -1,15 +1,14 @@
-
 import 'dart:ffi' as ffi;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:derredor/style/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class Registerpage extends StatefulWidget {
-  const Registerpage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<Registerpage> createState() => _RegisterpageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
 final List<String> _sexList = ['Masculino', 'Feminino', 'Prefiro não dizer'];
@@ -18,7 +17,7 @@ String? _selectedDate = "";
 String _labelText = "Data de nascimento";
 bool _inObscured = true;
 
-class _RegisterpageState extends State<Registerpage> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
@@ -28,7 +27,9 @@ class _RegisterpageState extends State<Registerpage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+        leading: IconButton(onPressed: () {
+          Navigator.pushNamed(context, 'initialPage');
+        }, icon: Icon(Icons.arrow_back)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -47,7 +48,6 @@ class _RegisterpageState extends State<Registerpage> {
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: StyleApp.detailsLago1),
-
                       ),
                     ),
                   ],
@@ -240,8 +240,8 @@ class _RegisterpageState extends State<Registerpage> {
     DateTime? _picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
+        firstDate: DateTime(1920),
+        lastDate: DateTime.now());
 
     if (_picked != null) {
       setState(() {
