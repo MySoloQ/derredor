@@ -12,9 +12,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final PageController _pageController = PageController();
+
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    double containerHeight = 330 * .6;
 
     return Scaffold(
       key: scaffoldKey,
@@ -193,37 +195,327 @@ class _HomePageState extends State<HomePage> {
               Text('Praias'),
             ]),
             Container(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [Text('Melhores Destinos'), Text('Mostrar todos')],
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('Melhores Destinos'),
-                      Text('Mostrar todos')
-                    ],
-                  ),
-                  Expanded(
-                    child: PageView(
-                      controller: _pageController,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 250,
-                            height: 330,
-                            color: StyleApp.detailsWhite1,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 250,
+                          height: 350,
+                          decoration: BoxDecoration(
+                              color: StyleApp.detailsWhite2,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 330 * .6,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                    color: StyleApp.detailsWhite1,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Stack(children: [
+                                    Container(
+                                      height: containerHeight,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/images/backgrounds/initial_page/fervedouro_initial.png'),
+                                            fit: BoxFit.cover),
+                                        color: StyleApp.detailsWhite1,
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 140, 0, 0),
+                                      child: Text(
+                                        'Fervedouro '
+                                        'Bela Vista',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel,
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 160, 0, 0),
+                                      child: Text(
+                                        'Jalapão',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel2,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          170, 136, 0, 0),
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.favorite_border,
+                                            color: Colors.white,
+                                            size: 30,
+                                          )),
+                                    )
+                                  ]),
+                                ),Padding(
+                                  padding: const EdgeInsets.fromLTRB(0,10,0,0),
+                                  child: Container(
+                                    height: containerHeight * .56,
+                                    decoration: BoxDecoration(
+                                        color: StyleApp.detailsWhite2,
+                                        borderRadius: BorderRadius.circular(16)),
+                                    child: Text(''
+                                        ''),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                        Container(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
                           width: 250,
-                          height: 330,
-                          color: StyleApp.detailsWhite1,
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                          height: 350,
+                          decoration: BoxDecoration(
+                              color: StyleApp.detailsWhite2,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 330 * .6,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                    color: StyleApp.detailsWhite1,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Stack(children: [
+                                    Container(
+                                      height: containerHeight,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/images/backgrounds/initial_page/dunas_jalapao_initial_2.png'),
+                                            fit: BoxFit.cover),
+                                        color: StyleApp.detailsWhite1,
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 140, 0, 0),
+                                      child: Text(
+                                        'Dunas',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel,
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 160, 0, 0),
+                                      child: Text(
+                                        'Jalapão',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel2,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          170, 136, 0, 0),
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.favorite,
+                                            color: Colors.white,
+                                            size: 30,
+                                          )),
+                                    )
+                                  ]),
+                                ),Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                  child: Container(
+                                    height: containerHeight * .56,
+                                    decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                        borderRadius:
+                                            BorderRadius.circular(16)),
+                                    child: Text(
+                                      'As Dunas do Jalapão são um verdadeiro paraíso natural, situadas no coração do Parque Estadual do Jalapão, no estado do Tocantins. Este fenômeno impressionante é '
+                                      'formado pela erosão de rochas de arenito, que ao longo de milhões de anos se tr'
+                                      'ansformaram em',
+                                      style:
+                                          StyleTextHome.googleRobotoCarousel3,
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 250,
+                          height: 350,
+                          decoration: BoxDecoration(
+                              color: StyleApp.detailsWhite2,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 330 * .6,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                    color: StyleApp.detailsWhite1,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Stack(children: [
+                                    Container(
+                                      height: containerHeight,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/images/backgrounds/login_page/natividade_login.png'),
+                                            fit: BoxFit.cover),
+                                        color: StyleApp.detailsWhite1,
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 140, 0, 0),
+                                      child: Text(
+                                        'Igreja Histórica ',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel,
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 160, 0, 0),
+                                      child: Text(
+                                        'Natividade',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel2,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          170, 136, 0, 0),
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.favorite,
+                                            color: Colors.white,
+                                            size: 30,
+                                          )),
+                                    )
+                                  ]),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 250,
+                          height: 350,
+                          decoration: BoxDecoration(
+                              color: StyleApp.detailsWhite2,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 330 * .6,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                    color: StyleApp.detailsWhite1,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Stack(children: [
+                                    Container(
+                                      height: containerHeight,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/images/backgrounds/initial_page/praca_girassois_initial.png'),
+                                            fit: BoxFit.cover),
+                                        color: StyleApp.detailsWhite1,
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 140, 0, 0),
+                                      child: Text(
+                                        'Praça dos girassóis',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel,
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 160, 0, 0),
+                                      child: Text(
+                                        'Tocantins',
+                                        style:
+                                            StyleTextHome.googleRobotoCarousel2,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          170, 136, 0, 0),
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.favorite,
+                                            color: Colors.white,
+                                            size: 30,
+                                          )),
+                                    )
+                                  ]),
+                                ),
+                                Container(
+                                  height: containerHeight * .75,
+                                  decoration: BoxDecoration(
+                                      color: StyleApp.detailsWhite2,
+                                      borderRadius: BorderRadius.circular(16)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
             )
           ],
         ),

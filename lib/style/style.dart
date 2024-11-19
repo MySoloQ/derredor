@@ -56,6 +56,22 @@ class StyleTextHome {
     fontWeight: FontWeight.w300,
     color: StyleApp.detailsWhite1,
   );
+
+  static TextStyle googleRobotoCarousel = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: StyleApp.detailsWhite1,
+  );
+  static TextStyle googleRobotoCarousel2 = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: StyleApp.detailsWhite1,
+  );
+  static TextStyle googleRobotoCarousel3 = GoogleFonts.roboto(
+    fontSize: 13,
+    fontWeight: FontWeight.w300,
+    color: StyleApp.textColors,
+  );
 }
 
 InputDecoration loginFormField(String? hint) {
