@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:derredor/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -42,11 +44,11 @@ class _FavoritosPageState extends State<FavoritosPage> {
             onPressed: () {
               Navigator.pushNamed(context, 'initialPage');
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: StyleApp.detailsWhite1,
             )),
-        title: Text(
+        title: const Text(
           "Favoritos",
           style: TextStyle(fontSize: 20, color: StyleApp.detailsWhite1),
         ),
@@ -57,7 +59,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
           children: items
               .map((item) => Padding(
                     // Modelo de item favoritado, esse wiget será o amontuado de coisas que o item favoritado ira mostrar na tela, cada wiget desse será um item favoritado
-                    padding: EdgeInsets.fromLTRB(7, 7, 7, 20),
+                    padding: const EdgeInsets.fromLTRB(7, 7, 7, 20),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -76,7 +78,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(12.0),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                     image: AssetImage('assets/jalapao.png'),
                                     fit: BoxFit.cover)),
                             width: largura,
@@ -85,17 +87,17 @@ class _FavoritosPageState extends State<FavoritosPage> {
                           Padding(
                             // titulo do item favoritado
                             
-                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                            child: Container(
+                            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                            child: SizedBox(
                               height: 30,
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     // container que vai delimitar o tamanho do titulo do item para nao atrapalhar o icone de favorito
                                     width: largura / 1.25,
                                     child: Text(
                                       item.title,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold),
@@ -107,8 +109,8 @@ class _FavoritosPageState extends State<FavoritosPage> {
                                       _toggleFavorite(items.indexOf(item));
                                     },
                                     icon: item.isFavorite
-                                        ? Icon(Icons.favorite)
-                                        : Icon(Icons.favorite_border),
+                                        ? const Icon(Icons.favorite)
+                                        : const Icon(Icons.favorite_border),
                                     iconSize: 20,
                                     color: StyleApp.detailsColor_2,
                                   ),
@@ -118,40 +120,40 @@ class _FavoritosPageState extends State<FavoritosPage> {
                           ),
                           Padding(
                             // avaliação do item favoritado
-                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                            child: Container(
+                            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                            child: SizedBox(
                               height: 20,
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: largura / 1.6,
-                                    child: Text(
+                                    child: const Text(
                                       "Avaliação",
                                       style: TextStyle(
                                           color: Colors.grey, fontSize: 15),
                                     ),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     size: 20,
                                     color: StyleApp.detailsColor_2,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     size: 20,
                                     color: StyleApp.detailsColor_2,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     size: 20,
                                     color: StyleApp.detailsColor_2,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     size: 20,
                                     color: StyleApp.detailsColor_2,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     size: 20,
                                     color: StyleApp.detailsColor_2,

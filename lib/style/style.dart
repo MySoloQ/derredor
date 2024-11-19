@@ -38,17 +38,17 @@ InputDecoration loginFormField(String? hint) {
     filled: true,
     fillColor: Colors.white,
     hintText: hint,
-    hintFadeDuration: Duration(seconds: 1),
-    hintStyle: TextStyle(color: StyleApp.textColors),
-    labelStyle: TextStyle(color: StyleApp.textColors),
+    hintFadeDuration: const Duration(seconds: 1),
+    hintStyle: const TextStyle(color: StyleApp.textColors),
+    labelStyle: const TextStyle(color: StyleApp.textColors),
 
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: BorderSide(color: StyleApp.detailsLago2, width: 3),
+      borderSide: const BorderSide(color: StyleApp.detailsLago2, width: 3),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: BorderSide(color: StyleApp.detailsLago2, width: 2),
+      borderSide: const BorderSide(color: StyleApp.detailsLago2, width: 2),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),

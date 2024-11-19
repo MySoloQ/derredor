@@ -1,7 +1,9 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -82,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                         width: size.width * .50,
                         height: size.width * .50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage(
@@ -95,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Transform.translate(
                     offset: Offset(size.width *.1, size.height * .3),
-                    child: Text('Login')),
+                    child: const Text('Login')),
                 Transform.translate(
                   offset: Offset(size.width * .1, size.height * .58),
                   child: Column(
@@ -199,12 +201,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: Center(
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             'Não possui cadastro?',
                             style: TextStyle(color: Colors.white, fontSize: 15),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           GestureDetector(

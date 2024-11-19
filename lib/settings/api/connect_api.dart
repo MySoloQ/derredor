@@ -17,7 +17,6 @@ class ConnectApi {
 
   Future<void> insertProcess(Users user, BuildContext context) async {
     final connect = await connecting();
-
     try {
       await connect.query(
         'INSERT INTO users (name,surname,gender,email,username,password,age) VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -31,12 +30,10 @@ class ConnectApi {
           user.age
         ],
       );
-    } catch (indentifier) {
-      var error = indentifier.toString();
-      print(error);
+    } catch (e) {
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Verifique sua conexão:  ')),
+        SnackBar(content: Text('$e')),
       );
     } finally {
       await connect.close();
@@ -59,7 +56,7 @@ class ConnectApi {
     } catch (e) {
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Verifique sua conexão')),
+        SnackBar(content: Text('$e')),
       );
     } finally {
       await connect.close();

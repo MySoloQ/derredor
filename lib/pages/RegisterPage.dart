@@ -1,11 +1,8 @@
-import 'dart:ffi' as ffi;
+// ignore_for_file: file_names
 import 'package:derredor/settings/api/app_variables_db.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:derredor/style/style.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -25,13 +22,11 @@ bool _inObscured = true;
 class _RegisterpageState extends State<RegisterPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _surnameController = TextEditingController();
-  final TextEditingController _sexController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   int _age = 0;
   final signInKey = GlobalKey<FormState>();
-  final TextEditingController _controller = TextEditingController();
   final List<String> _emailList = [
     '@gmail.com',
     '@yahoo.com',
@@ -46,6 +41,7 @@ class _RegisterpageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
+    // ignore: unused_local_variable
     double altura = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -56,13 +52,13 @@ class _RegisterpageState extends State<RegisterPage> {
             onPressed: () {
               Navigator.pushNamed(context, 'initialPage');
             },
-            icon: Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
+            const Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -85,12 +81,13 @@ class _RegisterpageState extends State<RegisterPage> {
               key: signInKey,
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: largura,
                     height: 80,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
                       child: TextFormField(
+                        controller: _nameController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Insira um nome, porfavor.';
@@ -99,7 +96,7 @@ class _RegisterpageState extends State<RegisterPage> {
                           }
                           return null;
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             labelStyle: TextStyle(color: Colors.black),
                             labelText: "Nome",
                             border: OutlineInputBorder(
@@ -109,12 +106,13 @@ class _RegisterpageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: largura,
                     height: 80,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
                       child: TextFormField(
+                        controller: _surnameController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Insira um sobrenome, porfavor.';
@@ -123,7 +121,7 @@ class _RegisterpageState extends State<RegisterPage> {
                           }
                           return null;
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             labelText: "Sobrenome",
                             border: OutlineInputBorder(
                               borderRadius:
@@ -133,7 +131,7 @@ class _RegisterpageState extends State<RegisterPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: Container(
                       width: largura,
                       height: 60,
@@ -143,9 +141,9 @@ class _RegisterpageState extends State<RegisterPage> {
                       child: Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                             child: DropdownButton<String>(
-                              hint: Text("Sexo"),
+                              hint: const Text("Sexo"),
                               value: _selectedSex,
                               items: _sexList.map((String sex) {
                                 return DropdownMenuItem<String>(
@@ -156,7 +154,6 @@ class _RegisterpageState extends State<RegisterPage> {
                               onChanged: (String? newValue) {
                                 setState(() {
                                   _selectedSex = newValue!;
-                                  print(_selectedSex);
                                 });
                               },
                               iconEnabledColor: Colors.transparent,
@@ -171,7 +168,7 @@ class _RegisterpageState extends State<RegisterPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
                     child: TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -182,30 +179,30 @@ class _RegisterpageState extends State<RegisterPage> {
                         return null;
                       },
                       maxLines: 1,
-                      controller: _controller,
+                      controller: _emailController,
                       decoration: InputDecoration(
                         labelText: "Email",
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                         ),
                         suffixIcon: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
-                            hint: Text('@'),
+                            hint: const Text('@'),
                             value: _selectedEmail,
                             onChanged: (String? newValue) {
                               setState(() {
                                 _selectedEmail = newValue;
-                                if (_controller.text.contains('@')) {
-                                  _controller.text =
-                                      _controller.text.split('@')[0] +
+                                if (_emailController.text.contains('@')) {
+                                  _emailController.text =
+                                      _emailController.text.split('@')[0] +
                                           newValue!;
                                 } else {
-                                  _controller.text =
-                                      _controller.text + newValue!;
+                                  _emailController.text =
+                                      _emailController.text + newValue!;
                                 }
-                                _controller.selection =
+                                _emailController.selection =
                                     TextSelection.fromPosition(
-                                  TextPosition(offset: _controller.text.length),
+                                  TextPosition(offset: _emailController.text.length),
                                 );
                               });
                             },
@@ -224,16 +221,16 @@ class _RegisterpageState extends State<RegisterPage> {
                   Row(
                     // seleção de idade
                     children: [
-                      Container(
+                      SizedBox(
                         width: largura,
                         height: 80,
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                          padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
                           child: TextFormField(
                             decoration: InputDecoration(
                               hintText: _labelText,
-                              prefixIcon: Icon(Icons.calendar_today),
-                              border: OutlineInputBorder(
+                              prefixIcon: const Icon(Icons.calendar_today),
+                              border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15))),
                             ),
@@ -249,12 +246,13 @@ class _RegisterpageState extends State<RegisterPage> {
                       ),
                     ],
                   ),
-                  Container(
+                  SizedBox(
                     width: largura,
                     height: 80,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 20),
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
                       child: TextFormField(
+                        controller: _userController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Insira um nome de usuário, porfavor.';
@@ -263,7 +261,7 @@ class _RegisterpageState extends State<RegisterPage> {
                           }
                           return null;
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             labelText: "Usuário",
                             border: OutlineInputBorder(
                               borderRadius:
@@ -272,23 +270,25 @@ class _RegisterpageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: largura,
                     height: 80,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: TextFormField(
+                        controller: _passwordController,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Insira uma senha, porfavor.';
                           } else if (value.length >= 15 || value.length <= 7) {
                             return 'Min de 7 ou max de 15 caracteres, porfavor.';
                           }
+                          return null;
                         },
                         obscureText: _inObscured,
                         decoration: InputDecoration(
                           labelText: "Senha",
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(15)),
                           ),
                           suffixIcon: IconButton(
@@ -309,7 +309,7 @@ class _RegisterpageState extends State<RegisterPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: ElevatedButton(
                 onPressed: () {
                   if (signInKey.currentState!.validate()) {
@@ -319,11 +319,12 @@ class _RegisterpageState extends State<RegisterPage> {
                           context,
                           _nameController.text,
                           _surnameController.text,
-                          _sexController.text,
+                          _selectedSex!,
                           _emailController.text,
                           _userController.text,
                           _passwordController.text,
                           _age);
+
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -331,7 +332,7 @@ class _RegisterpageState extends State<RegisterPage> {
                     backgroundColor: StyleApp.detailsLago1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30))),
-                child: Text("CADASTRAR",
+                child: const Text("CADASTRAR",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.white)),
               ),
@@ -349,16 +350,16 @@ class _RegisterpageState extends State<RegisterPage> {
     final DateTime firstDate = DateTime(1900);
     final DateTime lastDate = initialDate;
 
-    DateTime? _picked = await showDatePicker(
+    DateTime? picked = await showDatePicker(
         context: context,
         initialDate: initialDate,
         firstDate: firstDate,
         lastDate: lastDate);
 
-    if (_picked != null) {
+    if (picked != null) {
       setState(() {
-        _selectedDate = DateFormat('yyyy-MM-dd').format(_picked);
-        _age = (currentDate.year).toInt() - (_picked.year).toInt();
+        _selectedDate = DateFormat('yyyy-MM-dd').format(picked);
+        _age = (currentDate.year).toInt() - (picked.year).toInt();
       });
     }
   }
