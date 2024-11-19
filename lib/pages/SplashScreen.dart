@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:async';
 
 import 'package:derredor/style/style.dart';
@@ -14,6 +16,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin{
   late AnimationController _controller;
   late Animation<double> _animation;
+  // ignore: unused_field
   late Animation<double> _reverseAnimation;
 
   @override

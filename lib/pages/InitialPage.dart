@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:derredor/style/style.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -34,7 +36,7 @@ class _InitialPageState extends State<InitialPage> {
               child: Stack(
                 children: [
                   AnimatedSwitcher(
-                    duration: Duration(milliseconds: 3000),
+                    duration: const Duration(milliseconds: 3000),
                     child: Image.asset(
                       images[_currentIndex],
                       key: ValueKey<int>(_currentIndex),
@@ -46,7 +48,7 @@ class _InitialPageState extends State<InitialPage> {
                   CarouselSlider.builder(
                     itemCount: images.length,
                     itemBuilder: (context, index, realIdx) {
-                      return SizedBox();
+                      return const SizedBox();
                     },
                     options: CarouselOptions(
                       height: height * .3,
@@ -71,7 +73,7 @@ class _InitialPageState extends State<InitialPage> {
                       child: Text(
                         'Escolha como deseja acessar o app',
                         style: GoogleFonts.roboto(
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 color: Colors.black87,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700)),
@@ -84,7 +86,7 @@ class _InitialPageState extends State<InitialPage> {
                       child: Container(
                           width: width * .50,
                           height: width * .50,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(
@@ -112,12 +114,12 @@ class _InitialPageState extends State<InitialPage> {
                               }
                             }),
                             minimumSize:
-                                WidgetStatePropertyAll<Size>(Size(300, 50)),
+                                const WidgetStatePropertyAll<Size>(Size(300, 50)),
                           ),
                           child: Text(
                             'Já possuo cadastro',
                             style: GoogleFonts.roboto(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                     fontSize: 20,
                                     color: StyleApp.detailsWhite1,
                                     letterSpacing: .5,
@@ -125,7 +127,7 @@ class _InitialPageState extends State<InitialPage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 45, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(0, 45, 0, 0),
                           child: SizedBox(
                             child: Stack(
                               children: [
@@ -133,25 +135,25 @@ class _InitialPageState extends State<InitialPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Transform.translate(
-                                      offset: Offset(-30, 0),
+                                      offset: const Offset(-30, 0),
                                       child: ClipRect(
                                         child: Container(
                                           width: 130,
                                           height: 2,
-                                          color: Color(0xE3E3E3FF),
+                                          color: const Color(0xE3E3E3FF),
                                         ),
                                       ),
                                     ),
                                     Text(
                                       'OU',
                                       style: GoogleFonts.roboto(
-                                          textStyle: TextStyle(
+                                          textStyle: const TextStyle(
                                               fontSize: 15,
                                               color: Colors.black,
                                               fontWeight: FontWeight.w600)),
                                     ),
                                     Transform.translate(
-                                      offset: Offset(30, 0),
+                                      offset: const Offset(30, 0),
                                       child: ClipRect(
                                         child: Container(
                                           width: 130,
@@ -159,7 +161,7 @@ class _InitialPageState extends State<InitialPage> {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(0.01),
-                                              color: Color(0xE3E3E3FF)),
+                                              color: const Color(0xE3E3E3FF)),
                                         ),
                                       ),
                                     )
@@ -172,15 +174,6 @@ class _InitialPageState extends State<InitialPage> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 45, 0, 0),
                           child: ElevatedButton(
-                            child: Text(
-                              'Desejo me cadastrar',
-                              style: GoogleFonts.roboto(
-                                  textStyle: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      letterSpacing: .5,
-                                      fontWeight: FontWeight.w500)),
-                            ),
                             style: ButtonStyle(
                               backgroundColor:
                                   WidgetStateProperty.resolveWith((states) {
@@ -191,11 +184,20 @@ class _InitialPageState extends State<InitialPage> {
                                 }
                               }),
                               minimumSize:
-                                  WidgetStatePropertyAll<Size>(Size(300, 50)),
+                                  const WidgetStatePropertyAll<Size>(Size(300, 50)),
                             ),
                             onPressed: () {
                               Navigator.pushNamed(context, 'registerPage');
                             },
+                            child: Text(
+                              'Desejo me cadastrar',
+                              style: GoogleFonts.roboto(
+                                  textStyle: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      letterSpacing: .5,
+                                      fontWeight: FontWeight.w500)),
+                            ),
                           ),
                         ),
                       ],

@@ -4,6 +4,7 @@ import 'package:derredor/pages/RegisterPage.dart';
 import 'package:derredor/pages/SplashScreen.dart';
 import 'package:derredor/settings/api/app_variables_db.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 

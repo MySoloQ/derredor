@@ -1,7 +1,9 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    double largura = MediaQuery.of(context).size.width;
     Size size = Provider.of<AppVariablesDb>(context, listen: false)
         .screen
         .screenSize(context);
@@ -41,18 +44,15 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Stack(
               children: [
-                Transform.translate(
-                  offset: const Offset(0, 0),
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
-                    child: Image.asset(
-                      height: size.height,
-                      listOfimages[_currentIndex],
-                      key: ValueKey<int>(
-                          _currentIndex), // Ensures new widget on index change
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width,
-                    ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  child: Image.asset(
+                    height: size.height,
+                    listOfimages[_currentIndex],
+                    key: ValueKey<int>(
+                        _currentIndex), // Ensures new widget on index change
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width,
                   ),
                 ),
                 CarouselSlider.builder(
@@ -76,13 +76,14 @@ class _LoginPageState extends State<LoginPage> {
                   size: size,
                   painter: ShapePathPainter(),
                 ),
-                Transform.translate(
-                  offset: Offset(0, size.height * .05),
-                  child: Center(
-                    child: Container(
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(90, 30, 0, 0),
+                  child: Row(
+                    children: [
+                      Container(
                         width: size.width * .50,
                         height: size.width * .50,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage(
@@ -90,20 +91,18 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Transform.translate(
-                    offset: Offset(size.width *.1, size.height * .3),
-                    child: Text('Login')),
-                Transform.translate(
-                  offset: Offset(size.width * .1, size.height * .58),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 450, 20, 0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Usuário'
-                      ,style: StyleTextLoginScreen.googleRobotoCaption),
+                      Text('Usuário',
+                          style: StyleTextLoginScreen.googleRobotoCaption),
                       SizedBox(
                         width: 350,
                         child: Form(
@@ -115,7 +114,6 @@ class _LoginPageState extends State<LoginPage> {
                                 height: 70,
                                 child: TextFormField(
                                   controller: _usernameController,
-                                  keyboardType: TextInputType.emailAddress,
                                   decoration: loginFormField(
                                       'Insira seu nome de usuário'),
                                   style: StyleTextLoginScreen.googleRobotoText,
@@ -133,11 +131,12 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               SizedBox(
-                                child: Text('Senha'
-                                    ,style: StyleTextLoginScreen.googleRobotoCaption),
+                                child: Text('Senha',
+                                    style: StyleTextLoginScreen
+                                        .googleRobotoCaption),
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 28),
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                                 child: SizedBox(
                                   height: 70,
                                   width: 350,
@@ -145,21 +144,29 @@ class _LoginPageState extends State<LoginPage> {
                                     controller: _passwordController,
                                     decoration:
                                         loginFormField('Insira sua senha'),
-                                    style: StyleTextLoginScreen.googleRobotoText,
+                                    style:
+                                        StyleTextLoginScreen.googleRobotoText,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Por favor, insira sua senha.';
                                       } else if (value.length < 8) {
-                                        return 'Por favor, insira sua senho com mais de 8 caracteres.';
+                                        return 'Por favor, insira sua senha com mais de 8 caracteres.';
                                       }
                                       return null;
                                     },
-                                    obscureText: true,
+                                    obscureText: false,
                                   ),
                                 ),
                               ),
                               Center(
                                 child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(largura / 2, 50),
+                                      backgroundColor: StyleApp.detailsWhite1,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                    ),
                                     onPressed: () async {
                                       if (_loginKey.currentState!.validate()) {
                                         if (await Provider.of<AppVariablesDb>(
@@ -172,21 +179,27 @@ class _LoginPageState extends State<LoginPage> {
                                                 context)) {
                                           // ignore: use_build_context_synchronously
                                           ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            const SnackBar(
-                                                content: Text('Login válido'))
-                                          );
+                                              .showSnackBar(const SnackBar(
+                                                  content:
+                                                      Text('Login válido')));
                                         } else {
                                           // ignore: use_build_context_synchronously
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             const SnackBar(
-                                                content: Text('Login inválido')),
+                                                content:
+                                                    Text('Login inválido')),
                                           );
                                         }
                                       }
                                     },
-                                    child: const Text('Enviar')),
+                                    child: const Text(
+                                      'Enviar',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 17),
+                                    )),
                               ),
                             ],
                           ),
@@ -200,12 +213,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: Center(
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             'Não possui cadastro?',
                             style: TextStyle(color: Colors.white, fontSize: 15),
                             textAlign: TextAlign.center,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           GestureDetector(
