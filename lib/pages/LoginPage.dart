@@ -32,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    double largura = MediaQuery.of(context).size.width;
     Size size = Provider.of<AppVariablesDb>(context, listen: false)
         .screen
         .screenSize(context);
@@ -43,18 +44,15 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Stack(
               children: [
-                Transform.translate(
-                  offset: const Offset(0, 0),
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 500),
-                    child: Image.asset(
-                      height: size.height,
-                      listOfimages[_currentIndex],
-                      key: ValueKey<int>(
-                          _currentIndex), // Ensures new widget on index change
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width,
-                    ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 500),
+                  child: Image.asset(
+                    height: size.height,
+                    listOfimages[_currentIndex],
+                    key: ValueKey<int>(
+                        _currentIndex), // Ensures new widget on index change
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width,
                   ),
                 ),
                 CarouselSlider.builder(
@@ -78,10 +76,11 @@ class _LoginPageState extends State<LoginPage> {
                   size: size,
                   painter: ShapePathPainter(),
                 ),
-                Transform.translate(
-                  offset: Offset(0, size.height * .05),
-                  child: Center(
-                    child: Container(
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 10, 0, 0),
+                  child: Row(
+                    children: [
+                      Container(
                         width: size.width * .50,
                         height: size.width * .50,
                         decoration: const BoxDecoration(
@@ -92,20 +91,18 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Transform.translate(
-                    offset: Offset(size.width *.1, size.height * .3),
-                    child: const Text('Login')),
-                Transform.translate(
-                  offset: Offset(size.width * .1, size.height * .58),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 450, 20, 0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Usuário'
-                      ,style: StyleTextLoginScreen.googleRobotoCaption),
+                      Text('Usuário',
+                          style: StyleTextLoginScreen.googleRobotoCaption),
                       SizedBox(
                         width: 350,
                         child: Form(
@@ -134,11 +131,12 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               SizedBox(
-                                child: Text('Senha'
-                                    ,style: StyleTextLoginScreen.googleRobotoCaption),
+                                child: Text('Senha',
+                                    style: StyleTextLoginScreen
+                                        .googleRobotoCaption),
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 28),
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                                 child: SizedBox(
                                   height: 70,
                                   width: 350,
@@ -146,7 +144,8 @@ class _LoginPageState extends State<LoginPage> {
                                     controller: _passwordController,
                                     decoration:
                                         loginFormField('Insira sua senha'),
-                                    style: StyleTextLoginScreen.googleRobotoText,
+                                    style:
+                                        StyleTextLoginScreen.googleRobotoText,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return 'Por favor, insira sua senha.';
@@ -161,6 +160,13 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               Center(
                                 child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(largura / 2, 50),
+                                      backgroundColor: StyleApp.detailsWhite1,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                    ),
                                     onPressed: () async {
                                       if (_loginKey.currentState!.validate()) {
                                         if (await Provider.of<AppVariablesDb>(
@@ -173,21 +179,27 @@ class _LoginPageState extends State<LoginPage> {
                                                 context)) {
                                           // ignore: use_build_context_synchronously
                                           ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            const SnackBar(
-                                                content: Text('Login válido'))
-                                          );
+                                              .showSnackBar(const SnackBar(
+                                                  content:
+                                                      Text('Login válido')));
                                         } else {
                                           // ignore: use_build_context_synchronously
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             const SnackBar(
-                                                content: Text('Login inválido')),
+                                                content:
+                                                    Text('Login inválido')),
                                           );
                                         }
                                       }
                                     },
-                                    child: const Text('Enviar')),
+                                    child: const Text(
+                                      'Enviar',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 17),
+                                    )),
                               ),
                             ],
                           ),

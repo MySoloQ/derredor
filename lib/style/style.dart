@@ -44,7 +44,7 @@ InputDecoration loginFormField(String? hint) {
 
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: const BorderSide(color: StyleApp.detailsLago2, width: 3),
+      borderSide: const BorderSide(color: StyleApp.detailsLago2, width: 2),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
