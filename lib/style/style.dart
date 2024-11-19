@@ -23,7 +23,7 @@ class StyleTextLoginScreen {
   static TextStyle googleRobotoCaption = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w700,
-    color: StyleApp.textColors,
+    color: StyleApp.detailsWhite1,
   );
 
   static TextStyle googleRobotoText = GoogleFonts.roboto(

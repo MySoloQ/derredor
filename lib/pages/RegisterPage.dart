@@ -202,7 +202,8 @@ class _RegisterpageState extends State<RegisterPage> {
                                 }
                                 _emailController.selection =
                                     TextSelection.fromPosition(
-                                  TextPosition(offset: _emailController.text.length),
+                                  TextPosition(
+                                      offset: _emailController.text.length),
                                 );
                               });
                             },
@@ -315,16 +316,16 @@ class _RegisterpageState extends State<RegisterPage> {
                   if (signInKey.currentState!.validate()) {
                     Provider.of<AppVariablesDb>(context, listen: false)
                         .signUpProcess
-                      .signUpVerification(
-                          context,
-                          _nameController.text,
-                          _surnameController.text,
-                          _selectedSex!,
-                          _emailController.text,
-                          _userController.text,
-                          _passwordController.text,
-                          _age);
-
+                        .signUpVerification(
+                            context,
+                            _nameController.text,
+                            _surnameController.text,
+                            _selectedSex!,
+                            _emailController.text,
+                            _userController.text,
+                            _passwordController.text,
+                            _age);
+                    Navigator.pushNamed(context, 'initialPage');
                   }
                 },
                 style: ElevatedButton.styleFrom(
