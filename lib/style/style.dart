@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class StyleApp {
   static const Color bgColor = Color(0xFFFFD700);
   static const Color detailsLago1 = Color(0xFF007FFF);
@@ -33,6 +32,32 @@ class StyleTextLoginScreen {
   );
 }
 
+// Estilo dos textos da tela home
+class StyleTextHome {
+  static TextStyle googleRobotoCaption = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: StyleApp.textColors,
+  );
+
+  static TextStyle googleRobotoText = GoogleFonts.roboto(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: StyleApp.textColors,
+  );
+
+  static TextStyle googleRobotoLandingName = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: StyleApp.detailsWhite1,
+  );
+  static TextStyle googleRobotoLandingLocation = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+    color: StyleApp.detailsWhite1,
+  );
+}
+
 InputDecoration loginFormField(String? hint) {
   return InputDecoration(
     filled: true,
@@ -41,7 +66,6 @@ InputDecoration loginFormField(String? hint) {
     hintFadeDuration: Duration(seconds: 1),
     hintStyle: TextStyle(color: StyleApp.textColors),
     labelStyle: TextStyle(color: StyleApp.textColors),
-
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
       borderSide: BorderSide(color: StyleApp.detailsLago2, width: 3),
@@ -130,7 +154,7 @@ class ShapePathPainter extends CustomPainter {
     path.moveTo(0, size.height * .5);
     path.cubicTo(size.width * .24, size.height * .4, size.width * .8,
         size.height * .7, size.width, size.height * 0.5);
-    path.cubicTo(size.width, size.height*500, size.width + 1, size.height, 0,
+    path.cubicTo(size.width, size.height * 500, size.width + 1, size.height, 0,
         size.height);
     canvas.drawPath(path, paint);
     path.close();
