@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:derredor/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -86,7 +84,6 @@ class _FavoritosPageState extends State<FavoritosPage> {
                           ),
                           Padding(
                             // titulo do item favoritado
-                            
                             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                             child: SizedBox(
                               height: 30,

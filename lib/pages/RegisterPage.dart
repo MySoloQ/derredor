@@ -350,7 +350,6 @@ class _RegisterpageState extends State<RegisterPage> {
         DateTime(currentDate.year - 18, currentDate.month, currentDate.day);
     final DateTime firstDate = DateTime(1900);
     final DateTime lastDate = initialDate;
-
     DateTime? picked = await showDatePicker(
         context: context,
         initialDate: initialDate,
